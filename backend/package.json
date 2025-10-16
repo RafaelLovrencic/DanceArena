@@ -15,7 +15,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/RafaelLovrencic/DanceArena.git"
+    "url": "https://github.com/RafaelLovrencic/DanceArena-DEVTRAK.git"
   },
   "dependencies": {
     "express": "^5.1.0"
