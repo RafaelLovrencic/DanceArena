@@ -1,0 +1,32 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+
+nav {
+    display: flex;
+    background-color: #C95EEB;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0vw 2vw;
+    height: 10vh;
+}
+
+.Login {
+    background-color: #72F760;
+    border-radius: 12px;
+    border: 0;
+    padding: 10px;
+    font-size: 2vh;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Login:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.loginButton {
+    text-decoration: none;
+}
