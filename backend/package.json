@@ -1,0 +1,23 @@
+{
+  "name": "backend-dancearena",
+  "version": "1.0.0",
+  "description": "Backend za projekt DanceArena",
+  "main": "server.js",
+  "scripts": {
+    "test": "start",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "backend",
+    "dancearena"
+  ],
+  "author": "Emanuel Rod",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RafaelLovrencic/DanceArena.git"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
