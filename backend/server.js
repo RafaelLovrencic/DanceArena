@@ -1,8 +1,8 @@
 const cors = require('cors')
-app.use(cors());
-
 const express = require('express');
 const app = express();
+
+app.use(cors());
 
 app.get('/', (req, res) => {
     res.send('Dobrodošli na našu testnu stranicu!!!');
