@@ -39,6 +39,6 @@ Administracija sustava (F-011): Administrator ima najviše ovlasti, upravlja kor
 - Tihana Lončarek
 - Rafael Lovrenčić
 - Emanuel Rod - voditelj tima
-- Rafael Lovrenčić
+- Viktor Veverec
 
 # Kontribucije
