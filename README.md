@@ -23,7 +23,7 @@ Prijava klubova i nastupa (F-006): Voditelji klubova mogu prijaviti svoje grupe,
 
 Upravljanje prijavama (F-008): Organizatori mogu pregledavati i upravljati prijavama (odobriti, izmijeniti, odbiti).
 
-Generiranje PDF dokumenata (F-009): Sustav automatski generira PDF dokumente sa startnim listama i rezultatima.
+Generiranje PDF dokumenata (F-009): Sustav automatski generira PDF dokumente sa startnim listama.
 
 Bodovanje i rangiranje (F-010, F-012): Suci unose ocjene (0–30 bodova), a nakon završetka natjecanja sustav automatski izračunava rezultate i objavljuje rang liste.
 
