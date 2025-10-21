@@ -1,14 +1,15 @@
 import '../izgled/naslovnica.css'
-import { Link } from 'react-router-dom';
+import NavigacijskaTraka from './navigacijskatraka.jsx';
 
 export default function Naslovnica() {
   return (
   <>
     <nav>
-      <p>DanceArena</p>
-      <button className='Login'><Link to="/prijava" className='loginButton'>Prijava</Link></button>
+      <NavigacijskaTraka />
     </nav>
-    <h1>Naslovnica</h1>
+    <div className='brzistart'>
+      <h1 className='dobrodoslica'>Dobrodošli u DanceArenu!</h1>
+    </div>
   </>
   )
 }

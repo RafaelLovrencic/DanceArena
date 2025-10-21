@@ -1,0 +1,81 @@
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    background-color: #AB58C7;
+    height: 90px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.prijava {
+    background-color: #3ad732;
+    color: black;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.prijava:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.registracija {
+    background-color: #AB58C7;
+}
+
+.loginButton {
+    text-decoration: none;
+    color: black;
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    height: 90px;
+}
+
+.tipke {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-start;
+    padding: 0px;
+    gap: 24px;
+    width: 159px;
+    height: 47px;
+}
+
+.tipke>button {
+    width: 78px;
+    height: 47px;
+    border-radius: 12px;
+    border: 0;
+    padding: 10px;
+}
+
+.logo>img {
+    width: 90px;
+    height: 90px;
+}
+
+
+.DanceArena {
+    width: 987px;
+    height: 54px;
+    font-family: 'Kavivanar';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 170%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
+    color: #000000;
+}
