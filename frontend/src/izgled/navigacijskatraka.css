@@ -1,20 +1,9 @@
-nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px;
-    background-color: #AB58C7;
-    height: 90px;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 20px;
-}
-
+/* tipke za prijavu i registraciju */
 .prijava {
     background-color: #3ad732;
     color: black;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-left: 10px;
 }
 
 .prijava:hover {
@@ -25,11 +14,47 @@ nav {
 
 .registracija {
     background-color: #AB58C7;
+    transition: transform 0.2s ease;
+}
+
+.registracija:hover {
+    transform: scale(1.1);
 }
 
 .loginButton {
     text-decoration: none;
     color: black;
+}
+
+.tipke {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-start;
+    padding: 0px;
+    gap: 30px;
+    height: 47px;
+}
+
+.tipke>button {
+    width: 78px;
+    height: 47px;
+    border-radius: 12px;
+    border: 0;
+    padding: 10px;
+    font-size: 1em;
+}
+
+/* logo */
+.logoImg {
+    width: 90px;
+    height: 90px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logoImg:hover {
+    cursor: pointer;
+    transform: scale(1.1);
 }
 
 .logo {
@@ -41,33 +66,9 @@ nav {
     height: 90px;
 }
 
-.tipke {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    align-content: flex-start;
-    padding: 0px;
-    gap: 24px;
-    width: 159px;
-    height: 47px;
-}
-
-.tipke>button {
-    width: 78px;
-    height: 47px;
-    border-radius: 12px;
-    border: 0;
-    padding: 10px;
-}
-
-.logo>img {
-    width: 90px;
-    height: 90px;
-}
-
 
 .DanceArena {
-    width: 987px;
+    width: 80%;
     height: 54px;
     font-family: 'Kavivanar';
     font-style: normal;
@@ -78,4 +79,93 @@ nav {
     align-items: center;
     letter-spacing: 0.03em;
     color: #000000;
+}
+
+/* burger meni */
+.burgerMeni {
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: #AB58C7;
+    transition: transform 0.2s ease;
+}
+
+.burgerMeni:hover {
+    transform: scale(1.1);
+}
+
+.burgerBar {
+    width: 35px;
+    height: 6px;
+    background-color: black;
+    border-radius: 0.5em;
+    transform-origin: center;
+}
+
+.meni {
+    position: absolute;
+    top: 90px;
+    right: 0px;
+    height: 200px;
+    width: 20%;
+    border-bottom-left-radius: 10px;
+    background-color: #8b27ad;
+}
+
+.meni.skriven {
+    display: none;
+}
+
+.burgerBar.kliknut:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 9px);
+  transition: transform 0.4s ease;
+}
+
+.burgerBar.kliknut:nth-child(2) {
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.burgerBar.kliknut:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -9px);
+  transition: transform 0.4s ease;
+}
+
+.burgerBar.nekliknut {
+    transform: rotate(0) translate(0);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+}
+
+@media (max-width: 590px) {
+    .DanceArena {
+        height: 60px;
+        font-size: 18px;
+    }
+
+    .prijava {
+        margin-left: 2px;
+    }
+
+    .logo {
+        gap: 0px;
+    }
+
+    .logoImg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .tipke {
+        gap: 3px;
+    }
+
+    .tipke>button, .tipke>div {
+        transform: scale(0.8);
+    }
+
+    .prijava:hover, .registracija:hover, .logoImg:hover, .burgerMeni:hover {
+        transform: none;
+    }
 }

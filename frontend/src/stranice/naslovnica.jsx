@@ -7,9 +7,9 @@ export default function Naslovnica() {
     <nav>
       <NavigacijskaTraka />
     </nav>
-    <div className='brzistart'>
+    <section className='brziStart'>
       <h1 className='dobrodoslica'>Dobrodošli u DanceArenu!</h1>
-    </div>
+    </section>
   </>
   )
 }

@@ -5,7 +5,19 @@ body {
     font-style: normal;
 }
 
-.brzistart {
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #AB58C7;
+    height: 90px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.brziStart {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,7 +30,7 @@ body {
 
 .dobrodoslica {
     font-weight: 700;
-    font-size: 5rem;
+    font-size: 6vw;
     line-height: 110%;
     letter-spacing: -0.02em;
     text-align: center;
