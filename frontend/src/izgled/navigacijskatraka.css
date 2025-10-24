@@ -12,15 +12,6 @@
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-.registracija {
-    background-color: #AB58C7;
-    transition: transform 0.2s ease;
-}
-
-.registracija:hover {
-    transform: scale(1.1);
-}
-
 .loginButton {
     text-decoration: none;
     color: black;
@@ -108,10 +99,11 @@
     position: absolute;
     top: 90px;
     right: 0px;
-    height: 200px;
+    height: 100px;
     width: 20%;
     border-bottom-left-radius: 10px;
     background-color: #8b27ad;
+    z-index: 1000;
 }
 
 .meni.skriven {
@@ -165,7 +157,7 @@
         transform: scale(0.8);
     }
 
-    .prijava:hover, .registracija:hover, .logoImg:hover, .burgerMeni:hover {
+    .prijava:hover, .logoImg:hover, .burgerMeni:hover {
         transform: none;
     }
 }

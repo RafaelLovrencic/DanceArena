@@ -1,0 +1,71 @@
+.stranicaPrijava {
+    width: 100vw;
+    height: calc(100vh - 90px);;
+    background-image: url('./pozadine/pozadinadobrodoslice.png');
+    background-size: cover;        
+    background-position: center;   
+    background-repeat: no-repeat; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.prijavaOkvir {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #AB58C7;
+    border-radius: 12px;
+    padding: 10px;
+    height: 50vh;
+    width: 30vw;
+    color: black;
+}
+
+.Prijava {
+    margin: 0px;
+}
+
+.prijavaOkvir>div {
+    display: flex;
+    margin-top: 30px;
+    gap: 50px;
+}
+
+.prijavaOkvir>div>button {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.google {
+    background-image: url('./pozadine/googleIkona.png');
+    background-size: cover;        
+    background-position: center;   
+    background-repeat: no-repeat; 
+    height: 50px;
+    width: 50px;
+    border: none;      
+    padding: 0;        
+    background-color: transparent; 
+}
+
+.google:hover {
+    transform: scale(1.1);
+}
+
+.facebook {
+    background-image: url('./pozadine/facebookIkona.png');
+    background-size: cover;        
+    background-position: center;   
+    background-repeat: no-repeat; 
+    height: 50px;
+    width: 50px;
+    border: none;      
+    padding: 0;        
+    background-color: transparent; 
+}
+
+.facebook:hover {
+    transform: scale(1.1);
+}

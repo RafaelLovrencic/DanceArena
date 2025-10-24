@@ -1,7 +1,6 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Naslovnica from './stranice/naslovnica.jsx'
 import Prijava from './stranice/prijava.jsx'
-import Registracija from './stranice/registracija.jsx'
 
 export default function App() {
   return (
@@ -9,7 +8,6 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Naslovnica />} />
         <Route path="/prijava" element={<Prijava />} />
-        <Route path="/registracija" element={<Registracija />} />
       </Routes>
     </BrowserRouter>
   );
