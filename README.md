@@ -42,3 +42,43 @@ Administracija sustava (F-011): Administrator ima najviše ovlasti, upravlja kor
 - Viktor Veverec
 
 # Kontribucije
+
+> detaljna pravila u [CONTRIBUTING.md](https://github.com/RafaelLovrencic/DanceArena-DEVTRAK/blob/master/CONTRIBUTING.md)
+
+### Issue
+Prije početka rada potrebno je otvoriti **issue** s odgovarajućom kategorijom u naslovu:  
+\[BUG\], \[ZNAČAJKA\] ili \[DOKUMENTACIJA\]
+
+- Dodijeliti issue sebi ili članu tima  
+- Po želji dodati **tag**  
+- Ispuniti **opis** ako zadatak obuhvaća više elemenata  
+
+### Commit
+Svaki **commit** mora jasno opisivati što je promijenjeno.  
+Za složenije promjene dodati i detaljniji opis.  
+
+**Primjeri:**
+```bash
+Fixes #12: Ispravljena greška pri učitavanju proizvoda
+Refs #8: Dodan dio funkcionalnosti za filtriranje
+```
+
+#### Ključne riječi 
+- Fixes/Resolves - zatvaraju issue
+- Refs - pridodaje commit bez zatvaranja issue-a
+
+### Dokumentiranje rada
+1. otvoriti i zatvoriti issue prema pravilima
+2. zabilježiti promjene dokumentacije u [dnevnik](https://github.com/RafaelLovrencic/DanceArena-DEVTRAK/wiki/B.-Dnevnik-promjena-dokumentacije)
+3. dodati vrijeme rada u [tablicu aktivnosti](https://github.com/RafaelLovrencic/DanceArena-DEVTRAK/wiki/C.-Prikaz-aktivnosti-grupe#tablica-aktivnosti)
+
+### Stil kodiranja
+
+| Pravilo     | Opis                                              |
+| ----------- | ------------------------------------------------- |
+| Imenovanje  | camelCase                                         |
+| Zagrade     | Otvorena `{` u istom redu kao definicija funkcije |
+| Indentacija | 4 razmaka                                         |
+| Razmaci     | Ostaviti razmak između operatora i operanada      |
+| Struktura   | Prazan red između logičkih cjelina                |
+
