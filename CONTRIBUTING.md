@@ -18,6 +18,7 @@ Za kompleksnije i opsežnije promjene potrebno je napisati i opis proizvoljne du
 Zadatke zadane putem issue-a moguće je označiti kao obavljene upisivanjem ključnih riječi u **poruku** ili **naslov** od kojih prihvaćamo:
 - **Fixes**
 - **Resolves**
+  
 Ove su riječi ekvivalentne, no poželjno ih je koristiti semantički smisleno.
 
 Nije uvijek potrebno obaviti sve zadatke zadane issue-om. Ako je issue samo djelomično obavljen, i to je moguće dokumentirati korištenjem ključne riječi **Refs**.
@@ -26,7 +27,7 @@ Da bude jasno koji je issue u pitanju, uz ključnu riječ treba staviti i broj i
 
 # Dokumentiranje rada
 
-1. otvoriti [issue](https://github.com/RafaelLovrencic/DanceArena-DEVTRAK/issues) prema [gornjim uputama](#bugovi,-značajke,-dokumentacija) ako je posao prikladne veličine za to 
+1. otvoriti [issue](https://github.com/RafaelLovrencic/DanceArena-DEVTRAK/issues) prema [gornjim uputama](#bugovi-značajke-dokumentacija) ako je posao prikladne veličine za to 
 2. zatvoriti issue
 3. promjene u dokumentaciji zabilježiti u [dnevniku promjena dokumentacije](https://github.com/RafaelLovrencic/DanceArena-DEVTRAK/wiki/B.-Dnevnik-promjena-dokumentacije)
 4. dodati vrijeme rada u [tablicu aktivnosti](https://github.com/RafaelLovrencic/DanceArena-DEVTRAK/wiki/C.-Prikaz-aktivnosti-grupe#tablica-aktivnosti)
@@ -36,10 +37,10 @@ Da bude jasno koji je issue u pitanju, uz ključnu riječ treba staviti i broj i
 ## Konvencije
 
 ### Naslov issue-a
-\[KATEGORIJA\] <naslov>  
+\[KATEGORIJA\] \<naslov\>  
 
 ### Zatvaranje issue-a commitom
-<ključna riječ> #<broj issue-a>: <commit poruka/naslov>
+\<ključna riječ\> #\<broj issue-a\>: \<commit poruka/naslov\>
 
 ## Stil kodiranja
 
