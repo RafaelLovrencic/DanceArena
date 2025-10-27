@@ -1,71 +1,31 @@
 .stranicaPrijava {
     width: 100vw;
     height: calc(100vh - 90px);;
-    background-image: url('./pozadine/pozadinadobrodoslice.png');
-    background-size: cover;        
-    background-position: center;   
-    background-repeat: no-repeat; 
+    background-color: black;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.prijavaOkvir {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
-    background-color: #AB58C7;
-    border-radius: 12px;
-    padding: 10px;
-    height: 50vh;
-    width: 30vw;
-    color: black;
+    color: white;
 }
 
 .Prijava {
-    margin: 0px;
-}
-
-.prijavaOkvir>div {
+    padding-left: 10px;
+    width: 100%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(48px, 8vw, 96px);
     display: flex;
-    margin-top: 30px;
-    gap: 50px;
+    letter-spacing: -0.005em;
+    color: #AB58C7;
+
 }
 
-.prijavaOkvir>div>button {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-}
-
-.google {
-    background-image: url('./pozadine/googleIkona.png');
-    background-size: cover;        
-    background-position: center;   
-    background-repeat: no-repeat; 
-    height: 50px;
-    width: 50px;
-    border: none;      
-    padding: 0;        
-    background-color: transparent; 
-}
-
-.google:hover {
-    transform: scale(1.1);
-}
-
-.facebook {
-    background-image: url('./pozadine/facebookIkona.png');
-    background-size: cover;        
-    background-position: center;   
-    background-repeat: no-repeat; 
-    height: 50px;
-    width: 50px;
-    border: none;      
-    padding: 0;        
-    background-color: transparent; 
-}
-
-.facebook:hover {
-    transform: scale(1.1);
+.opisPrijave {
+    padding-left: 15px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: clamp(16px, 2vw, 24px);
+    display: flex;
+    letter-spacing: -0.005em;
 }

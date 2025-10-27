@@ -8,13 +8,9 @@ export default function Prijava() {
               <NavigacijskaTraka />
             </nav>
             <div className="stranicaPrijava">
-                <div className="prijavaOkvir">
-                    <h1 className='Prijava'>Prijava</h1>
-                    <h3 className='opisPrijave'>Odaberite račun kojim se želite prijaviti!</h3>
-                    <div>
-                        <button className='google' onClick={() => window.location.href = '/auth/google'}></button>
-                        <button className='facebook' onClick={() => window.location.href = '/auth/facebook'}></button>
-                    </div>
+                <div className="tekst">
+                    <h1 className='Prijava'>Prijavi se!</h1>
+                    <p className='opisPrijave'>Već imaš račun? Klikni ovdje.</p>
                 </div>
             </div>
         </>
