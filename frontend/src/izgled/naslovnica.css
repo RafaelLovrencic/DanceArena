@@ -5,6 +5,7 @@ body {
     height: 100%;
     font-family: 'Inter';
     font-style: normal;
+    box-sizing: border-box;
 }
 
 nav {
@@ -26,6 +27,7 @@ nav {
     justify-content: center;
     width: 100%;
     height: 426px;
+    padding: 2rem 1rem;
     margin: 0;
     background-image: url("./pozadine/pozadinadobrodoslice.png");
     background-size: cover;        
@@ -59,22 +61,45 @@ nav {
     align-items: center;
     justify-content: left;
     width: 100%;
-    height: 243px;
+    height: 240px;
+    padding: 2rem 3%;
     margin: 0;
     background-image: url("./pozadine/pozadinaobavijesti.png");
     background-size: cover;        
     background-position: center;   
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
+    box-sizing: border-box; 
 }
 
 .obavijestiTekst {
     font-size: 4vw;
-    margin-left: 3%;
+    margin: 0;
     animation: fadeIn 2s ease forwards;
 }
 
+@media (max-width: 1024px) {
+  .brziStart {
+    min-height: 50vh;
+    background-position: top;
+  }
+}
 
+@media (max-width: 600px) {
+  .brziStart {
+    height: 200px;
+  }
 
+  .dobrodoslica {
+    font-size: 40px;
+  }
 
+  .obavijesti {
+    height: fit-content;
+  }
+
+  .obavijestiTekst {
+    font-size: 6vw;
+  }
+}
 
 
