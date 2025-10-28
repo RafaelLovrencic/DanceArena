@@ -1,5 +1,5 @@
 .stranicaPrijava {
-    width: 100vw;
+    width: 100%;
     height: calc(100vh - 90px);;
     background-color: black;
     display: flex;
@@ -28,4 +28,8 @@
     font-size: clamp(16px, 2vw, 24px);
     display: flex;
     letter-spacing: -0.005em;
+}
+
+.tekst {
+    width: 100%;
 }

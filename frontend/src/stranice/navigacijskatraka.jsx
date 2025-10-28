@@ -1,6 +1,6 @@
 import '../izgled/navigacijskatraka.css'
 import logo from '../izgled/pozadine/logo.png';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function NavigacijskaTraka() {
@@ -21,6 +21,7 @@ export default function NavigacijskaTraka() {
   }
 
   const lokacija = useLocation();
+  const navigate = useNavigate();
   return (
   <>
     <div className='logo'>
@@ -29,7 +30,7 @@ export default function NavigacijskaTraka() {
     </div>
     <div className='tipke'>
       {lokacija.pathname !== '/prijava' && (
-        <button className='prijava'><Link to="/prijava" className='loginButton'>Prijava</Link></button>
+        <button className='prijava' onClick={() => navigate('/prijava')}>Prijava</button>
       )}
       <div className='burgerMeni' onClick={azurirajMeni}>
         <div className={burgerKlasa}></div>
