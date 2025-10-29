@@ -30,7 +30,7 @@ export default function NavigacijskaTraka() {
     </div>
     <div className='tipke'>
       {lokacija.pathname !== '/prijava' && (
-        <button className='prijava' onClick={() => navigate('/prijava')}>Prijava</button>
+        <button className='prijava'>Prijava</button>
       )}
       <div className='burgerMeni' onClick={azurirajMeni}>
         <div className={burgerKlasa}></div>
