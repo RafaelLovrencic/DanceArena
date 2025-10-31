@@ -17,15 +17,16 @@ export default function UnosPodataka() {
       alert("Molimo popunite sva obavezna polja!");
       return;
     }
-    const podaci = {Ime: ime + " " + prezime,
+    const podaci = {Ime: ime,
+      Prezime: prezime,
       Uloga: uloga,
       ...(uloga === 'voditelj' && {
-        "Ime kluba": imeKluba,
+        Ime_kluba: imeKluba,
         Lokacija: lokacija
       })
     }
     console.log(podaci);
-    const response = await fetch('/registracija', {
+    const response = await fetch('http://localhost:5000/upispodataka/registracija', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(podaci),
