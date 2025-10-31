@@ -1,0 +1,22 @@
+[
+  {
+    "ime": "Emanuel",
+    "prezime": "Horvat",
+    "uloga": "admin"
+  },
+  {
+    "ime": "Maja",
+    "prezime": "Kovač",
+    "uloga": "voditelj"
+  },
+  {
+    "ime": "Ivan",
+    "prezime": "Novak",
+    "uloga": "organizator"
+  },
+  {
+    "ime": "Petra",
+    "prezime": "Jurić",
+    "uloga": "sudac"
+  }
+]
