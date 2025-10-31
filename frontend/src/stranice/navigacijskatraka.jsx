@@ -29,15 +29,17 @@ export default function NavigacijskaTraka() {
       <p className='DanceArena'>DanceArena</p>
     </div>
     <div className='tipke'>
-      {lokacija.pathname !== '/prijava' && (
+      {lokacija.pathname !== '/unospodataka' && (
         <button className='prijava'>Prijava</button>
       )}
-      <div className='burgerMeni' onClick={azurirajMeni}>
-        <div className={burgerKlasa}></div>
-        <div className={burgerKlasa}></div>
-        <div className={burgerKlasa}></div>
+      {lokacija.pathname !== '/unospodataka' && (
+        <div className='burgerMeni' onClick={azurirajMeni}>
+          <div className={burgerKlasa}></div>
+          <div className={burgerKlasa}></div>
+          <div className={burgerKlasa}></div>
+        </div>
+      )}
       </div>
-    </div>
     <div className={meniKlasa}></div>
   </>
   )

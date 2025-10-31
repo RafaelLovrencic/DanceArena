@@ -1,0 +1,164 @@
+.okvirZaPocetakPrijave {
+    height: 300px;
+    width: 100%;
+    padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dovrsiPrijavu {
+    font-family: 'Sedan SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 96px;
+    padding-left: 50px;
+    margin-bottom: 0;
+    color: #AB58C7;
+}
+
+.uputeZaPrijavu {
+    font-family: 'Sedan SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 24px;
+    padding-left: 50px;
+    letter-spacing: -0.005em;
+    color: #1E1E1E;
+}
+
+.odabirUloge {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 68px;
+    height: 177px;
+    border-width: 5px 0px;
+    border-style: solid;
+    border-color: #2CDE32;
+    background-color: #1E1E1E;
+    color: white;
+    font-family: 'Sedan SC';
+}
+
+.odaberiUlogu {
+    height: 117px;
+    margin-left: 30px;
+    font-family: 'Sedan SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 145%;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.005em;
+}
+
+.radioGrupa label {
+    height: 46px;
+    font-family: 'Sedan SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 145%;
+    display: flex;
+    align-items: center;
+}
+
+.radioGrupa {
+    display: flex;
+    justify-content: space-evenly;
+    flex: 1;
+    gap: 30px;
+}
+
+.radioGrupa input[type="radio"] {
+    width: 40px;
+    height: 40px;
+    margin-right: 20px;
+    background: #E3C1EE;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.radioGrupa input[type="radio"]:hover {
+    transform: scale(1.1);
+}
+
+.tekstOpcije {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 0px 0px;
+    gap: 26px;
+    transition: all 0.3s ease;
+    background-color: rgba(1, 19, 2, 0.846);
+}
+
+.tekstOpcije>div  {
+    height: 108px;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 2px solid #2CDE32;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 50px;
+}
+
+.tekstOpcije>div>label {
+    font-family: 'Sedan SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 145%;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.005em;
+    color: #FFFFFF;
+}
+
+.tekstOpcije>div>input[type="text"] {
+    background: #E3C1EE;
+    font-family: 'Sedan SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 145%;
+    width: 60vw;
+}
+
+.okvirZaPotvrdi {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 30px 20px;
+    background-color: #1E1E1E;
+}
+
+.okvirZaPotvrdi>button {
+    box-sizing: border-box;
+    width: 150px;
+    height: 50px;
+    background: #AB58C7;
+    border-width: 0px 4px 4px 0px;
+    border-style: solid;
+    border-color: #E3C1EE;
+    border-radius: 48px;
+    color: white;
+    font-family: 'Sedan SC';
+    font-size: 25px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.okvirZaPotvrdi>button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
