@@ -10,6 +10,7 @@ export default function UnosPodataka() {
   const [prezime, setPrezime] = useState('');
   const [lokacija, setLokacija] = useState('');
   const [imeKluba, setImeKluba] = useState('');
+  const navigate = useNavigate();
 
   const posaljiPodatke = async (e) => {
     e.preventDefault(); 
