@@ -46,7 +46,7 @@
 
 .odaberiUlogu {
     height: 117px;
-    margin-left: 30px;
+    padding-left: 30px;
     font-family: 'Sedan SC';
     font-style: normal;
     font-weight: 400;
@@ -79,7 +79,7 @@
     width: 40px;
     height: 40px;
     margin-right: 20px;
-    background: #E3C1EE;
+    background-color: #c66ee3;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
@@ -130,9 +130,19 @@
     font-size: 32px;
     line-height: 145%;
     width: 60vw;
+    padding: 5px 10px;
+    color: #AB58C7;
 }
 
-.okvirZaPotvrdi {
+.tekstOpcije>div>input[type="text"]::placeholder {
+    color: #AB58C7;
+    opacity: 1;
+}
+.tekstOpcije>div>input[type="text"]:focus::placeholder {
+    color: gray;
+}
+
+.okvirZaPotvrdu {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -141,7 +151,7 @@
     background-color: #1E1E1E;
 }
 
-.okvirZaPotvrdi>button {
+.okvirZaPotvrdu>button {
     box-sizing: border-box;
     width: 150px;
     height: 50px;
@@ -157,8 +167,98 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.okvirZaPotvrdi>button:hover {
+.okvirZaPotvrdu>button:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 1250px) {
+    .okvirZaPocetakPrijave {
+        height: 250px;
+    }
+    .uputeZaPrijavu {
+        font-size: 2.5vw;
+    }
+    .dovrsiPrijavu {
+        font-size: 7vw;
+    }
+    .odaberiUlogu {
+        font-size: 4vw;
+    }
+    .radioGrupa label {
+        font-size: 2vw;
+    }
+    .tekstOpcije>div>label {
+        font-size: 3vw;
+    }
+    .tekstOpcije>div>input[type="text"] {
+        height: 40px;
+        font-size: 2.5vw;
+    }
+}
+
+@media (max-width: 861px) {
+    .okvirZaPocetakPrijave {
+        height: 150px;
+    }
+
+    .dovrsiPrijavu {
+        font-size: 50px;
+        padding-left: 0px;
+    }
+    .uputeZaPrijavu {
+        padding-left: 0px;
+        font-size: 16px;
+    }
+
+    .okvirZaPocetakPrijave {
+        align-items: center;
+    }
+    .odabirUloge {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 349px;
+        gap: 30px;
+    }
+    .odaberiUlogu {
+        height: 52px;
+        font-size: 36px;
+        padding-left: 0px;
+    }
+    .radioGrupa {
+        flex-direction: column;
+        align-self: flex-start;
+    }
+    .radioGrupa>label {
+        font-size: 24px;
+    }
+    .radioGrupa input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+    .tekstOpcije>div {
+        flex-direction: column;
+        height: 120px;
+        padding: 0px;
+    }
+    .tekstOpcije>div>input[type="text"] {
+        width: 100%;
+        box-sizing: border-box; 
+        padding: 5px 10px;
+        font-size: 24px;
+        color: #AB58C7;
+        height: 35px;
+    }
+    .tekstOpcije>div>label {
+        font-size: 36px;
+        padding-left: 20px;
+        align-self: flex-start;
+    }
+    .okvirZaPotvrdu>button:hover, .radioGrupa input[type="radio"]:hover {
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
 }
 

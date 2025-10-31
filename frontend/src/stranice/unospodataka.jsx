@@ -54,7 +54,7 @@ export default function UnosPodataka() {
             </>
           )}
         </div>
-        <div className='okvirZaPotvrdi'>
+        <div className='okvirZaPotvrdu'>
           <button type="submit">Potvrdi</button>  
         </div>
       </form>
