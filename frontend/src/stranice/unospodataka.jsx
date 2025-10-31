@@ -1,10 +1,39 @@
 import '../izgled/unospodataka.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function UnosPodataka() {
   const [uloga, setUloga] = useState('');
+  const [ime, setIme] = useState('');
+  const [prezime, setPrezime] = useState('');
+  const [lokacija, setLokacija] = useState('');
+  const [imeKluba, setImeKluba] = useState('');
+
+  const posaljiPodatke = async (e) => {
+    e.preventDefault(); 
+    if (!ime || !prezime || !uloga || (uloga === 'voditelj' && (!imeKluba || !lokacija))) {
+      alert("Molimo popunite sva obavezna polja!");
+      return;
+    }
+    const podaci = {Ime: ime + " " + prezime,
+      Uloga: uloga,
+      ...(uloga === 'voditelj' && {
+        "Ime kluba": imeKluba,
+        Lokacija: lokacija
+      })
+    }
+    console.log(podaci);
+    const response = await fetch('/registracija', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(podaci),
+    });
+    if (response.ok) {
+      navigate('/');  
+    }
+  };
   return (
   <>
     <nav>
@@ -15,7 +44,7 @@ export default function UnosPodataka() {
         <p className='uputeZaPrijavu'>Za prijavu je potrebno popuniti podatke.</p>
     </section>
     <div className='okvirZaFormu'>
-      <form className="unosPodataka">
+      <form className="unosPodataka"  onSubmit={posaljiPodatke}>
         <div className="odabirUloge">
           <label className="odaberiUlogu">Odaberi ulogu:</label>
           <div className="radioGrupa">
@@ -33,23 +62,23 @@ export default function UnosPodataka() {
         <div className='tekstOpcije'>
           <div className="ime">
             <label>Ime:</label>
-            <input type="text" placeholder="Unesite svoje ime" />
+            <input type="text" placeholder="Unesite svoje ime" value={ime} onChange={(e) => setIme(e.target.value)}/>
           </div>
 
           <div className="prezime">
             <label>Prezime:</label>
-            <input type="text" placeholder="Unesite svoje prezime" />
+            <input type="text" placeholder="Unesite svoje prezime" value={prezime} onChange={(e) => setPrezime(e.target.value)}/>
           </div>
           {uloga === 'voditelj' && (
             <>
               <div className="imeKluba">
                 <label>Ime kluba:</label>
-                <input type="text" placeholder="Unesite ime kluba" />
+                <input type="text" placeholder="Unesite ime kluba" value={imeKluba} onChange={(e) => setImeKluba(e.target.value)}/>
               </div>
     
               <div className="lokacija">
                 <label>Lokacija kluba:</label>
-                <input type="text" placeholder="Unesite lokaciju kluba" />
+                <input type="text" placeholder="Unesite lokaciju kluba" value={lokacija} onChange={(e) => setLokacija(e.target.value)}/>
               </div>
             </>
           )}
