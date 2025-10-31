@@ -15,7 +15,7 @@ router.post('/registracija', function(req, res) {
 
     fs.writeFileSync(putanja, JSON.stringify(podaci, null, 2));
 
-    res.send(200);
+    res.status(200).send();
 })
 
 module.exports = router;
