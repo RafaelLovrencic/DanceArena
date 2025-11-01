@@ -26,7 +26,7 @@ export default function UnosPodataka() {
       })
     }
     console.log(podaci);
-    const response = await fetch('http://localhost:5000/upispodataka/registracija', {
+    const response = await fetch('http://localhost:5001/upispodataka/registracija', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(podaci),
