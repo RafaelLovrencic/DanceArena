@@ -18,8 +18,7 @@ export default function UnosPodataka() {
       alert("Molimo popunite sva obavezna polja!");
       return;
     }
-    const podaci = {Ime: ime,
-      Prezime: prezime,
+    const podaci = {Ime: ime + " " + prezime,
       Uloga: uloga,
       ...(uloga === 'voditelj' && {
         Ime_kluba: imeKluba,
