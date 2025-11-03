@@ -35,5 +35,12 @@
     "Ime": "Matija",
     "Prezime": "Cvek",
     "Uloga": "organizator"
+  },
+  {
+    "Ime": "Emanuel",
+    "Prezime": "Korman",
+    "Uloga": "voditelj",
+    "Ime_kluba": "Dere",
+    "Lokacija": "Modrovec"
   }
 ]
