@@ -1,9 +1,9 @@
 import '../izgled/navigacijskatraka.css'
 import logo from '../izgled/pozadine/logo.png';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 
-export default function NavigacijskaTraka() {
+export default function NavigacijskaTraka({ korisnik }) {
   const [burgerKlasa, setBurgerKlasa] = useState("burgerBar nekliknut")
   const [meniKlasa, setMeniKlasa] = useState("meni skriven")
   const [meniAktivan, setMeniAktivan] = useState(false)
@@ -21,7 +21,6 @@ export default function NavigacijskaTraka() {
   }
 
   const lokacija = useLocation();
-  const navigate = useNavigate();
   return (
   <>
     <div className='logo'>
@@ -29,8 +28,8 @@ export default function NavigacijskaTraka() {
       <p className='DanceArena'>DanceArena</p>
     </div>
     <div className='tipke'>
-      {lokacija.pathname !== '/unospodataka' && (
-        <button className='prijava'>Prijava</button>
+      {!korisnik && lokacija.pathname !== '/unospodataka' && (
+        <button className="prijava" onClick={() => window.location.href="http://localhost:5000/auth/google"}>Prijava</button>
       )}
       {lokacija.pathname !== '/unospodataka' && (
         <div className='burgerMeni' onClick={azurirajMeni}>
