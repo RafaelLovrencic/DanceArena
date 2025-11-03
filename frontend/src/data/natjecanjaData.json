@@ -1,0 +1,23 @@
+[
+{
+    "id": 1,
+    "naziv": "Zagreb Open",
+    "datum": "2025-04-12",
+    "mjesto": "Zagreb",
+    "kategorija": "Latin"
+  },
+  {
+    "id": 2,
+    "naziv": "Split Dance Cup",
+    "datum": "2025-06-03",
+    "mjesto": "Split",
+    "kategorija": "Standard"
+  },
+  {
+    "id": 3,
+    "naziv": "Dubrovnik Classic",
+    "datum": "2025-09-15",
+    "mjesto": "Dubrovnik",
+    "kategorija": "Hip-Hop"
+  }
+]

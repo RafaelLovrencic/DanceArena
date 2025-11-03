@@ -1,5 +1,6 @@
 import '../izgled/naslovnica.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx';
+import {Link} from 'react-router-dom';
 
 export default function Naslovnica() {
   return (
@@ -10,7 +11,7 @@ export default function Naslovnica() {
     <section className='brziStart'>
       <h1 className='dobrodoslica'>Dobrodošli u DanceArenu!</h1>
       <div className='precaci'>
-        <button className='svaNatjecanja'>Sva natjecanja</button>
+        <Link to="/natjecanja" className="svaNatjecanja">Sva natjecanja</Link>
         <button className='noviDogadaj'>Stvori novi događaj</button>
       </div>
     </section>
