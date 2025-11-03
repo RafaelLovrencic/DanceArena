@@ -20,11 +20,27 @@ app.use(
 );
 app.use(express.json());
 app.use(cookieParser());
+
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
+  next();
+});
+
+
 // app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGO_URI).then(() => {
-  console.log("MongoDB spojen");
-});
+async function startMongo() {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB spojen");
+  } catch (err) {
+    console.error("Greška pri spajanju na MongoDB:", err);
+  }
+}
+
+startMongo();
+
+
 
 // Google OAuth konfiguracija
 require("./src/config/passport")(passport);
