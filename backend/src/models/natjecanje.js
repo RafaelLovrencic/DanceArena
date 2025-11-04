@@ -32,4 +32,4 @@ const natjecanjeSchema = new mongoose.Schema({
   }]
 });
 
-module.exports = mongoose.model('Natjecanje', natjecanjeSchema);
+module.exports = mongoose.model('Natjecanje', natjecanjeSchema, 'natjecanje');

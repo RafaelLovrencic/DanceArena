@@ -45,4 +45,4 @@ const nastupSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Nastup', nastupSchema);
+module.exports = mongoose.model('Nastup', nastupSchema, 'nastup');

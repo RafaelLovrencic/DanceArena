@@ -20,4 +20,4 @@ const klubSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Klub', klubSchema);
+module.exports = mongoose.model('Klub', klubSchema, 'klub');

@@ -17,4 +17,4 @@ const kategorijaSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Kategorije', kategorijaSchema);
+module.exports = mongoose.model('Kategorije', kategorijaSchema, 'kategorije');

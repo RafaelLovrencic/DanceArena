@@ -24,4 +24,4 @@ const bodoviSucaSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Bodovi_Suca', bodoviSucaSchema);
+module.exports = mongoose.model('Bodovi_Suca', bodoviSucaSchema, 'bodovi_suca');
