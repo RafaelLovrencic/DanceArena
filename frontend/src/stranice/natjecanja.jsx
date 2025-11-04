@@ -10,8 +10,10 @@ export default function Natjecanja() {
         <nav>
             <NavigacijskaTraka />
         </nav>
-        <section className="sekcija">
+        <section className="naslov-sekcija">
             <h1 className="naslov">Popis natjecanja</h1>
+        </section>
+        <section className="sekcija">
             <div className="tablica-container">
                 {competitions.length > 0 ? (
                     <table className="tablica">

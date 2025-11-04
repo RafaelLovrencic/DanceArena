@@ -8,14 +8,40 @@ body {
   box-sizing: border-box;
 }
 
+.naslov-sekcija {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 350px;
+  margin: 0;
+  background-image: url("./pozadine/pozadinadobrodoslice.png");
+  background-size: cover;        
+  background-position: center;   
+  background-repeat: no-repeat; 
+}
+
 .sekcija {
   padding: 40px;
   text-align: center;
+  background-color: black;
 }
 
 .naslov {
-  margin-bottom: 20px;
-  font-size: 28px;
+  width: 578px;
+  height: 88px;
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 110%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  letter-spacing: -0.02em;
+  color: #AB58C7;
 }
 
 .tablica-container {
@@ -29,9 +55,11 @@ body {
 
 .tablica {
   width: 100%;
+  margin: 0;
   border-collapse: collapse;
   background: #fff;
   min-width: 600px;
+  background: #1E1E1E;
 }
 
 .tablica th, .tablica td {
@@ -40,28 +68,53 @@ body {
 }
 
 .tablica th {
-  background-color: #2CDE32;
-  color: black;
+  background: #AB58C7;
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #E3C1EE;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 145%;
+  color: #FFFFFF;
+}
+
+.tablica td {
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #E3C1EE;
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 145%;
+  color: #FFFFFF;
 }
 
 .tablica tr:hover {
-  background-color: #f5f5f5;
+  background-color: rgb(47, 42, 42);
 }
 
 .gumbovi {
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 100px;
+  gap: 20px;
 }
 
 .gumbovi > button {
   background: #2CDE32;
   border-radius: 12px;
   border: 0;
-  padding: 10px;
-  width: 100px;
+  padding: 10px 20px;
+  min-width: 140px;
+  white-space: nowrap;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   color: black;
   text-decoration: none;
@@ -85,25 +138,75 @@ body {
     font-style: italic;     
 }
 
-@media (max-width: 600px){
+@media (max-width: 700px){
+    .tablica {
+      min-width: 0;
+    }
+
+    .tablica-container {
+      overflow-x: visible;
+      box-shadow: none;
+    }
+
+    .tablica thead {
+      display: none;
+    }
+    
+    .tablica, .tablica tbody, .tablica tr, .tablica td {
+      display: block;
+      width: 100%;
+    }
+
+    .tablica tr {
+      border: solid;
+      border-color: #E3C1EE;
+      text-align: center;
+    }
+
+    .tablica td {
+      border: none;
+      text-align: center;
+    }
+
+    .gumbovi {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .gumbovi > button {
+      width: 100%;
+      max-width: 250px;
+      font-size: 1.1rem;
+    }
+
     .gumbovi > button:hover{
-        transform: none !important;
-        box-shadow: none !important;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .naslov-sekcija {
+      height: 150px;
+    }
+
+    .naslov {
+      width: 327px;
+      height: 48px;
+      font-size: 1.69rem;
     }
 
 }
 
-@media (max-width: 750px){
+@media (max-width: 800px){
+    .tablica td {
+      padding-left: -5px;
+    }
+    
     .tablica th, .tablica td{
-        padding: 10px 12px;
+        padding: 10px 20px 10px 0px;
     }
 
     .sekcija {
         padding: 20px;
-    }
-
-    .naslov {
-        font-size: 24px;
     }
 
     .gumbovi > button {
