@@ -163,6 +163,10 @@ body {
       text-align: center;
     }
 
+    .tablica tr:hover {
+      background-color: transparent;
+    }
+
     .tablica td {
       border: none;
       text-align: center;
