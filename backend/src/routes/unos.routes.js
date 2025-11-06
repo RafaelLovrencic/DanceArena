@@ -18,7 +18,7 @@ router.post("/", async (req, res) => {
     const korisnik = await Korisnici.findById(decoded.id);
     if (!korisnik) return res.status(404).json({ greska: "Korisnik nije pronađen" });
 
-    if (korisnik.uloga !== null) {
+    if (korisnik.uloga) {
       return res.status(403).json({ greska: "Uloga je već odabrana i ne može se promijeniti" });
     }
 
