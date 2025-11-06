@@ -2,6 +2,7 @@ import '../izgled/navigacijskatraka.css'
 import logo from '../izgled/pozadine/logo.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
+import { PORT } from '../config.js';
 
 export default function NavigacijskaTraka({ korisnik }) {
   const [burgerKlasa, setBurgerKlasa] = useState("burgerBar nekliknut")
@@ -29,7 +30,7 @@ export default function NavigacijskaTraka({ korisnik }) {
     </div>
     <div className='tipke'>
       {!korisnik && lokacija.pathname !== '/unospodataka' && (
-        <button className="prijava" onClick={() => window.location.href="http://localhost:5000/auth/google"}>Prijava</button>
+        <button className="prijava" onClick={() => window.location.href=`http://localhost:${PORT}/auth/google`}>Prijava</button>
       )}
       {lokacija.pathname !== '/unospodataka' && (
         <div className='burgerMeni' onClick={azurirajMeni}>

@@ -1,6 +1,7 @@
 import '../izgled/unospodataka.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx';
 import { useState, useEffect } from 'react';
+import { PORT } from '../config.js';
 
 export default function UnosPodataka() {
   const [korisnik, setKorisnik] = useState(null);
@@ -15,7 +16,7 @@ export default function UnosPodataka() {
   const dohvatiKorisnika = async () => {
     try {
       const response = await fetch(
-        "http://localhost:5000/auth/provjera-autentifikacije",
+        `http://localhost:${PORT}/auth/provjera-autentifikacije`,
         { credentials: "include" }
       );
 
@@ -53,7 +54,7 @@ export default function UnosPodataka() {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/unospodataka", {
+      const response = await fetch(`http://localhost:${PORT}/unospodataka`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

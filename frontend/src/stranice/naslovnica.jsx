@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "../izgled/naslovnica.css";
 import NavigacijskaTraka from "./navigacijskatraka.jsx";
+import { PORT } from '../config.js';
 
 export default function Naslovnica() {
   const [korisnik, setKorisnik] = useState(null);
@@ -10,7 +11,7 @@ export default function Naslovnica() {
     const provjeriKorisnika = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/auth/provjera-autentifikacije",
+          `http://localhost:${PORT}/auth/provjera-autentifikacije`,
           {
             credentials: "include",
             cache: "no-store",
@@ -49,7 +50,7 @@ export default function Naslovnica() {
 
   const odjava = async () => {
     try {
-      await fetch("http://localhost:5000/auth/logout", {
+      await fetch(`http://localhost:${PORT}/auth/logout`, {
         method: "POST",
         credentials: "include",
         cache: "no-store",
