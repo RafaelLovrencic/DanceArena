@@ -11,7 +11,7 @@ module.exports = (passport) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          const korisnik = await Korisnici.findOne({ google_id: profile.id });
+          let korisnik = await Korisnici.findOne({ google_id: profile.id });
 
           if (!korisnik) {
             korisnik = await Korisnici.create({
