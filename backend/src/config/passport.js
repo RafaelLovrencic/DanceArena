@@ -25,7 +25,7 @@ module.exports = (passport) => {
               },
 
               google_id: profile.id,
-              role: "user",
+              role: "posjetitelj",
               uloga: null
 
             });
