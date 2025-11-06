@@ -1,31 +1,34 @@
-// model za testiranje s MongoDB bazom
+const mongoose = require('mongoose');
 
-const mongoose = require("mongoose");
-
-const korisnikSchema = new mongoose.Schema({
-  ime: String,
-  email: String,
-  photo: String,
-  google_id: String,
-  uloga: {
+const userSchema = new mongoose.Schema({
+  role: {
     type: String,
-    enum: ["sudac", "voditelj", "organizator"],
-    default: null
+    enum: ['organizator', 'voditelj', 'sudac', 'admin'],
+    required: true
   },
-  imeKluba: {
+  ime: {
     type: String,
-    default: null
+    required: true
   },
-  lokacija: {
+  email: {
     type: String,
-    deafult: null
+    required: true
   },
-  createdAt: {
-    type: Date,
-    default: Date.now
+  oauthProvider: {
+    type: {
+      type: String,
+      required: true
+    },
+    providerId: {
+      type: String,
+      required: true
+    }
+  },
+  klubId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Klub',
+    required: false
   }
 });
 
-module.exports = mongoose.model("User", korisnikSchema);
-
-
+module.exports = mongoose.model('User', userSchema, 'user');
