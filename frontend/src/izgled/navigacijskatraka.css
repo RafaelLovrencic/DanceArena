@@ -1,0 +1,161 @@
+/* tipke za prijavu i registraciju */
+.prijava {
+    background-color: #3ad732;
+    color: black;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin-left: 10px;
+}
+
+.prijava:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tipke {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: flex-start;
+    padding: 0px;
+    gap: 30px;
+    height: 47px;
+}
+
+.tipke>button {
+    width: 78px;
+    height: 47px;
+    border-radius: 12px;
+    border: 0;
+    padding: 10px;
+    font-size: 1em;
+}
+
+/* logo */
+.logoImg {
+    width: 90px;
+    height: 90px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.logoImg:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    height: 90px;
+}
+
+
+.DanceArena {
+    width: 80%;
+    height: 54px;
+    font-family: 'Kavivanar';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 32px;
+    line-height: 170%;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.03em;
+    color: #000000;
+}
+
+/* burger meni */
+.burgerMeni {
+    height: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    background-color: #AB58C7;
+    transition: transform 0.2s ease;
+}
+
+.burgerMeni:hover {
+    transform: scale(1.1);
+}
+
+.burgerBar {
+    width: 35px;
+    height: 6px;
+    background-color: black;
+    border-radius: 0.5em;
+    transform-origin: center;
+}
+
+.meni {
+    position: absolute;
+    top: 90px;
+    right: 0px;
+    height: 100px;
+    width: 20%;
+    border-bottom-left-radius: 10px;
+    background-color: #8b27ad;
+    z-index: 1000;
+}
+
+.meni.skriven {
+    display: none;
+}
+
+.burgerBar.kliknut:nth-child(1) {
+  transform: rotate(45deg) translate(8px, 9px);
+  transition: transform 0.4s ease;
+}
+
+.burgerBar.kliknut:nth-child(2) {
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.burgerBar.kliknut:nth-child(3) {
+  transform: rotate(-45deg) translate(8px, -9px);
+  transition: transform 0.4s ease;
+}
+
+.burgerBar.nekliknut {
+    transform: rotate(0) translate(0);
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s;
+}
+
+@media (max-width: 590px) {
+    .DanceArena {
+        height: 60px;
+        font-size: 18px;
+    }
+
+    .prijava {
+        margin-left: 2px;
+    }
+
+    .logo {
+        gap: 0px;
+    }
+
+    .logoImg {
+        width: 50px;
+        height: 50px;
+    }
+
+    .tipke {
+        gap: 3px;
+    }
+
+    .tipke>button, .logoImg, .burgerMeni {
+        transform: scale(0.8);
+        box-shadow: none;
+        transition: none; 
+    }
+
+    .tipke>button:hover, .logoImg:hover, .burgerMeni:hover {
+        transform: scale(0.8) !important;
+        box-shadow: none !important;
+    }
+}
