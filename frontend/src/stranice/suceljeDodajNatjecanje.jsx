@@ -67,7 +67,7 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                     </div>
                     <div className="opisNatj">
                         <label>Opis natjecanja:</label>
-                        <textarea name="opis" value={podaciNatjecanje.opis} onChange={napraviPromjenu} style={{width: '560px', height: '80px', maxHeight: '200px', minHeight: '40px'}} required/>
+                        <textarea name="opis" value={podaciNatjecanje.opis} onChange={napraviPromjenu} required/>
                     </div>
                     <div className="datumNatj">
                         <label>Datum natjecanja:</label>
