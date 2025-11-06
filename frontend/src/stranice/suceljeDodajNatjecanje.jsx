@@ -1,38 +1,85 @@
 import { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import '../izgled/suceljeDodajNatjecanja.css'
+import '../izgled/suceljeDodajNatjecanja.css';
 
-export default function DodajNatjecanje({onClose}) {
-    const [podaciNatjecanje, setPodaciNatjecanje] = useState({ime: '', opis: '', lokacija: '', kotizacija: '', dobnaKategorija: '', stilPlesa: '', velicinaGrupa: '', sudci: ''});
-    const [datum, setDatum] = useState(null);
+export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
+    const [podaciNatjecanje, setPodaciNatjecanje] = useState(() => {
+        if (natjecanjeZaUredi) {
+            return {
+                ime: natjecanjeZaUredi.naziv || '',
+                opis: natjecanjeZaUredi.opis || '',
+                datum: natjecanjeZaUredi.datum ? new Date(natjecanjeZaUredi.datum) : null,
+                lokacija: natjecanjeZaUredi.mjesto || '',
+                kotizacija: natjecanjeZaUredi.kotizacija || '',
+                dobnaKategorija: natjecanjeZaUredi.kategorija || '',
+                stilPlesa: natjecanjeZaUredi.stil || '',
+                velicinaGrupa: natjecanjeZaUredi.velicina || '',
+                sudci: (natjecanjeZaUredi.sudci || []).join('\n'),
+            };
+        }
+        return {
+            ime: '', opis: '', datum: null, lokacija: '', kotizacija: '',
+            dobnaKategorija: '', stilPlesa: '', velicinaGrupa: '', sudci: ''
+        };
+    });
     const napraviPromjenu = (e) => {
         const { name, value } = e.target;
         setPodaciNatjecanje(prev => ({ ...prev, [name]: value }));
     };
+    const pohraniPromjene = async (e) => {
+        e.preventDefault();
+        const sudciPolje = podaciNatjecanje.sudci.split('\n').map(s => s.trim()).filter(s => s !== '');;
+        if (sudciPolje.length < 3) return alert('Morate unijeti najmanje 3 suca.');
+        if (sudciPolje.length % 2 === 0) return alert('Broj sudaca mora biti neparan.');
+
+        const method = natjecanjeZaUredi ? 'PUT' : 'POST';
+        const url = natjecanjeZaUredi 
+        ? `http://localhost:5000/natjecanja/${natjecanjeZaUredi.id}`
+        : `http://localhost:5000/natjecanja`;
+        const podaci = {...podaciNatjecanje, sudci: sudciPolje};
+        try {
+            const response = await fetch(url, { 
+                method,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(podaci)
+            }); 
+            if (!response.ok) {
+                throw new Error('Greška pri slanju podataka');
+            }
+            const result = await response.json();
+            console.log('Uspješno poslano:', result);
+            onClose(); 
+        } catch (error) {
+            console.error(error);
+            alert('Došlo je do pogreške pri slanju podataka');
+        }
+    }
     return (
         <>
             <div className="sucelje">
-                <form className='formaZaNatjecanja'>
+                <form className='formaZaNatjecanja' onSubmit={pohraniPromjene}>
                     <div className="imeNatj">
                         <label>Ime natjecanja:</label>
-                        <input type="text" value={ime} onChange={napraviPromjenu}/>
+                        <input name="ime" type="text" value={podaciNatjecanje.ime} onChange={napraviPromjenu} required/>
                     </div>
                     <div className="opisNatj">
                         <label>Opis natjecanja:</label>
-                        <textarea  value={opis} onChange={napraviPromjenu} style={{width: '560px', height: '80px', maxHeight: '200px', minHeight: '40px'}}/>
+                        <textarea name="opis" value={podaciNatjecanje.opis} onChange={napraviPromjenu} style={{width: '560px', height: '80px', maxHeight: '200px', minHeight: '40px'}} required/>
                     </div>
                     <div className="datumNatj">
                         <label>Datum natjecanja:</label>
-                        <DatePicker selected={datum} onChange={(date) => setDatum(date)} dateFormat="dd.MM.yyyy"/>
+                        <DatePicker selected={podaciNatjecanje.datum} onChange={(date) => setPodaciNatjecanje(prev => ({ ...prev, datum: date }))} dateFormat="dd.MM.yyyy" required/>
                     </div>
                     <div className="lokacijaNatj">
                         <label>Lokacija:</label>
-                        <input type='text' value={lokacija} onChange={napraviPromjenu}/>
+                        <input name="lokacija" type='text' value={podaciNatjecanje.lokacija} onChange={napraviPromjenu} required/>
                     </div>
                     <div className='dobnaKategorija'>
                         <label>Dobna kategorija:</label>
-                        <select value={dobnaKategorija} onChange={napraviPromjenu}>
+                        <select name="dobnaKategorija" value={podaciNatjecanje.dobnaKategorija} onChange={napraviPromjenu} required>
                             <option value=""></option>
                             <option value="djeca">Djeca</option>
                             <option value="juniori">Juniori</option>
@@ -41,7 +88,7 @@ export default function DodajNatjecanje({onClose}) {
                     </div>
                     <div className='stilPlesa'>
                         <label>Stil plesa:</label>
-                        <select value={stilPlesa} onChange={napraviPromjenu}>
+                        <select name="stilPlesa" value={podaciNatjecanje.stilPlesa} onChange={napraviPromjenu} required>
                             <option value=""></option>
                             <option value="balet">Balet</option>
                             <option value="hiphop">Hiphop</option>
@@ -52,7 +99,7 @@ export default function DodajNatjecanje({onClose}) {
                     </div>
                     <div className='velicinaGrupa'>
                         <label>Veličina grupa:</label>
-                        <select value={velicinaGrupa} onChange={napraviPromjenu}>
+                        <select name="velicinaGrupa" value={podaciNatjecanje.velicinaGrupa} onChange={napraviPromjenu} required>
                             <option value=""></option>
                             <option value="solo">Solo</option>
                             <option value="duo">Duo</option>
@@ -62,15 +109,15 @@ export default function DodajNatjecanje({onClose}) {
                     </div>
                     <div className='kotizacija'>
                         <label>Kotizacija:</label>
-                        <input type='text' value={kotizacija} onChange={napraviPromjenu}/>
+                        <input name="kotizacija" type='text' value={podaciNatjecanje.kotizacija} onChange={napraviPromjenu} required/>
                     </div>
                     <div className='sudci'>
                         <label>Sudci:</label>
-                        <textarea type='text' placeholder={'Ivan Horvat\nAna Kovač\nMarko Babić\n...'} value={sudci} onChange={napraviPromjenu}/>
+                        <textarea name="sudci" type='text' placeholder={'Ivan Horvat\nAna Kovač\nMarko Babić\n...'} value={podaciNatjecanje.sudci} onChange={napraviPromjenu} required/>
                     </div>
                     <div className='submitOdustani'>
                         <button type="submit">Stvori natjecanje</button>
-                        <button onClick={onClose}>Odustani</button>
+                        <button type='button' onClick={onClose}>Odustani</button>
                     </div>
                 </form>
             </div>

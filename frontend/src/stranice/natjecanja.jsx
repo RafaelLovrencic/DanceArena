@@ -7,6 +7,14 @@ import {useState} from 'react'
 export default function Natjecanja() {
     const [competitions, setCompetitions] = useState(natjecanjaData);
     const [pokaziSucelje, setPokaziSucelje] = useState(false);
+    const [odabranoNatjecanje, setOdabranoNatjecanje] = useState(null);
+    const [podaciZaUredi, setPodaciZaUredi] = useState(null)
+    const dohvatiPodatkeONatjecanju = async (id) => {
+        const response = await fetch(`http://localhost:5000/natjecanja/${odabranoNatjecanje.id}`);
+        const data = await response.json();
+        setPodaciZaUredi(data);  
+        setPokaziSucelje(true); 
+    }
     return (
     <>
         <nav>
@@ -29,7 +37,12 @@ export default function Natjecanja() {
                     </thead>
                     <tbody>
                         {competitions.map((comp) => (
-                            <tr key={comp.id}>
+                            <tr key={comp.id} onClick={() => {
+                            if (odabranoNatjecanje?.id === comp.id) {
+                            setOdabranoNatjecanje(null); 
+                            } else {
+                            setOdabranoNatjecanje(comp); 
+                            }}} className={odabranoNatjecanje?.id === comp.id ? 'selected' : ''}>
                                 <td>{comp.naziv}</td>
                                 <td>{comp.datum}</td>
                                 <td>{comp.mjesto}</td>
@@ -45,12 +58,18 @@ export default function Natjecanja() {
             </div> 
             <div className="gumbovi">
                 <button className="dodaj" onClick={() => setPokaziSucelje(true)}>Dodaj natjecanje</button>
-                <button className="uredi">Uredi natjecanje</button>
+                <button className="uredi" onClick={dohvatiPodatkeONatjecanju} style={{backgroundColor: odabranoNatjecanje ? '#2CDE32' : 'rgba(23, 101, 25, 1)', cursor: odabranoNatjecanje ? 'pointer' : 'not-allowed'}}>Uredi natjecanje</button>
                 <button className="obrisi">Obriši natjecanje</button>
             </div>
         </section>
         {pokaziSucelje && (
-            <DodajNatjecanje onClose={() => setPokaziSucelje(false)} />
+            <DodajNatjecanje onClose={() => {
+                    setPokaziSucelje(false);
+                    setPodaciZaUredi(null);
+                    setOdabranoNatjecanje(null);
+                }}
+                natjecanjeZaUredi={podaciZaUredi}
+            />
         )}
         
     </>

@@ -98,6 +98,10 @@ body {
   background-color: rgb(47, 42, 42);
 }
 
+.tablica tr.selected {
+  background-color: rgb(16, 70, 18);
+}
+
 .gumbovi {
   display: flex;
   flex-direction: row;
