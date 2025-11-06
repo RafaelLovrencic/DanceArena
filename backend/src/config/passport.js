@@ -11,15 +11,23 @@ module.exports = (passport) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          let korisnik = await Korisnici.findOne({ google_id: profile.id });
+          const korisnik = await Korisnici.findOne({ google_id: profile.id });
 
           if (!korisnik) {
-            korisnik = await Korisnici.create({
+            korisnik = await user.create({
               ime: profile.displayName,
               email: profile.emails[0].value,
-              photo: profile.photos[0].value,
+              photo: profile.photo[0].value,
+
+              oauthProvider: {
+                providerId: profile.id,
+                type: "google",
+              },
+
               google_id: profile.id,
-              uloga: null, // bez uloge dok ne unese podatke
+              role: "user",
+              uloga: null
+
             });
           }
 
