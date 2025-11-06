@@ -45,7 +45,7 @@ export default function Profil(){
         <div className="korisnikPodaci">
         <p>Ime i prezime: {korisnik.ime}</p>
         <p>Email: {korisnik.email}</p>
-        <p>Uloga: {korisnik.uloga || "Nije odabrana"}</p>
+        <p>Uloga: {korisnik.role || "Nije odabrana"}</p>
         <button onClick={odjava}>Odjavi se</button>
         </div>
         </>
