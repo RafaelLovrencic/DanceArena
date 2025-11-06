@@ -40,22 +40,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
-// app.use(express.urlencoded({ extended: true }));
-
-/*async function startMongo() {
-  try {
-    await mongoose.connect(process.env.MONGO_URI);
-    console.log("MongoDB spojen");
-  } catch (err) {
-    console.error("Greška pri spajanju na MongoDB:", err);
-  }
-}*/
-
-//startMongo();
-
-
-
 // Google OAuth konfiguracija
 require("./src/config/passport")(passport);
 app.use(passport.initialize());
