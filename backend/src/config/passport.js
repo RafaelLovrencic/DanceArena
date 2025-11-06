@@ -14,7 +14,7 @@ module.exports = (passport) => {
           const korisnik = await Korisnici.findOne({ google_id: profile.id });
 
           if (!korisnik) {
-            korisnik = await user.create({
+            korisnik = await Korisnici.create({
               ime: profile.displayName,
               email: profile.emails[0].value,
               photo: profile.photo[0].value,
