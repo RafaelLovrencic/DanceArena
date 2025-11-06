@@ -1,7 +1,7 @@
 const express = require("express");
 const passport = require("passport");
 const jwt = require("jsonwebtoken");
-const Korisnici = require("../models/User");
+const Korisnici = require("../models/user");
 
 var router = express.Router();
 

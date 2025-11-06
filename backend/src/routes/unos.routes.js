@@ -1,6 +1,6 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
-const Korisnici = require("../models/User");
+const Korisnici = require("../models/user");
 
 var router = express.Router();
 
