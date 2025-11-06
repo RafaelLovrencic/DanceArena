@@ -12,7 +12,6 @@ const unosRuter = require("./src/routes/unos.routes");
 const app = express();
 
 
-app.use(cors());
 app.use(express.json()); // da dopustimo JSON body u POST requestu
 
 app.get('/', (req, res) => {
