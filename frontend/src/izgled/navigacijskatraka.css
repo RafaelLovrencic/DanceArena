@@ -38,6 +38,16 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
+.profilImg {
+    width: 50px;
+    height: 50px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.profilImg:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
 .logoImg:hover {
     cursor: pointer;
     transform: scale(1.1);
@@ -148,13 +158,13 @@
         gap: 3px;
     }
 
-    .tipke>button, .logoImg, .burgerMeni {
+    .tipke>button, .logoImg, .burgerMeni, .profilImg {
         transform: scale(0.8);
         box-shadow: none;
         transition: none; 
     }
 
-    .tipke>button:hover, .logoImg:hover, .burgerMeni:hover {
+    .tipke>button:hover, .logoImg:hover, .burgerMeni:hover, .profilImg:hover {
         transform: scale(0.8) !important;
         box-shadow: none !important;
     }

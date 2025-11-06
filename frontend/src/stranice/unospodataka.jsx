@@ -48,8 +48,8 @@ export default function UnosPodataka() {
 
   const posaljiPodatke = async (e) => {
     e.preventDefault(); 
-    if (!ime || !uloga || (uloga === 'voditelj' && (!imeKluba))) {
-      alert("Molimo popunite sva obavezna polja!");
+    if (!ime || !uloga || (uloga === 'voditelj' && (!imeKluba) && (!lokacija))) {
+      alert("Molimo popunite sva polja!");
       return;
     }
 
@@ -131,10 +131,10 @@ export default function UnosPodataka() {
           
           <div className='tekstOpcije'>
             <div className="ime">
-              <label>Ime:</label>
+              <label>Ime i prezime:</label>
               <input 
                 type="text" 
-                placeholder="Unesite svoje ime"
+                placeholder="Unesite svoje ime i prezime"
                 value={ime}
                 onChange={(e) => setIme(e.target.value)}
               />

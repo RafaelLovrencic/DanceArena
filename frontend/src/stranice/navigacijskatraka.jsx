@@ -1,5 +1,6 @@
 import '../izgled/navigacijskatraka.css'
 import logo from '../izgled/pozadine/logo.png';
+import profil from '../izgled/pozadine/profilIkona.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { PORT } from '../config.js';
@@ -29,16 +30,19 @@ export default function NavigacijskaTraka({ korisnik }) {
       <p className='DanceArena'>DanceArena</p>
     </div>
     <div className='tipke'>
-      {!korisnik && lokacija.pathname !== '/unospodataka' && (
+      {!korisnik && lokacija.pathname !== '/unospodataka' && lokacija.pathname !== 'profil' && (
         <button className="prijava" onClick={() => window.location.href=`http://localhost:${PORT}/auth/google`}>Prijava</button>
       )}
-      {lokacija.pathname !== '/unospodataka' && (
+      {korisnik && lokacija.pathname !== '/unospodataka' && lokacija.pathname !== '/profil' && (
+        <Link to="/profil" className='profil'><img src={profil} alt="Profil" className='profilImg'/></Link>
+      )}
+      {/* {lokacija.pathname !== '/unospodataka' && (
         <div className='burgerMeni' onClick={azurirajMeni}>
           <div className={burgerKlasa}></div>
           <div className={burgerKlasa}></div>
           <div className={burgerKlasa}></div>
-        </div>
-      )}
+        </div>  
+      )} */}
       </div>
     <div className={meniKlasa}></div>
   </>
