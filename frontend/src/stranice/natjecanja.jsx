@@ -31,16 +31,7 @@ export default function Natjecanja() {
         };
         fetchData();
     }, []);
-    /*const test = async () => 
-    { try 
-        { const response = await fetch("http://localhost:5001/natjecanja/690e668b652282d76a7b68fa"); 
-            const data = await response.json(); 
-            console.log(data); 
-        } catch (err) 
-        { 
-            console.error("Greška:", err); 
-        } 
-    }*/
+
    const obrisiNatjecanje = async () => {
         try {
             const response = await fetch (`http://localhost:5001/natjecanja/${odabranoNatjecanje._id}`, {
@@ -77,7 +68,7 @@ export default function Natjecanja() {
             <h1 className="naslov">Popis natjecanja</h1>
         </section>
         <section className="sekcija">
-            <div className="tablica-container">
+            <div className="tablica-container" style={{height: competitions.length > 1 ? 'auto' : '150px'}}>
                 {loading ? (
                     <p className="loader">Učitavanje...</p>
                 ) : competitions.length > 0 ? (
