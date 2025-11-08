@@ -111,8 +111,8 @@ router.post("/add", async (req, res) => {
             datum,
             lokacija,
             organizatorId,
-            kategorije,
-            suci,
+            kategorije: kategorijeIds,
+            suci: suciIds
         });
 
         await novoNatjecanje.save();
