@@ -142,6 +142,15 @@ body {
     font-style: italic;     
 }
 
+.loader {
+  font-size: 1.2rem;      
+  color: white;            
+  margin-top: 20px;       
+  margin-bottom: 20px;    
+  text-align: center;    
+  font-style: italic;   
+}
+
 .tablica tbody tr {
   cursor: pointer;
 }
