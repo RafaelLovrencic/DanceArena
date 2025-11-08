@@ -11,23 +11,17 @@ module.exports = (passport) => {
       },
       async (accessToken, refreshToken, profile, done) => {
         try {
-          let korisnik = await Korisnici.findOne({ google_id: profile.id });
+          let korisnik = await Korisnici.findOne({ "oauthProvider.providerId": profile.id });
 
           if (!korisnik) {
             korisnik = await Korisnici.create({
               ime: profile.displayName,
               email: profile.emails?.[0]?.value || "",
-              photo: profile.photos?.[0]?.value || "",  
-
+              photo: profile.photos?.[0]?.value || "",
               oauthProvider: {
                 providerId: profile.id,
                 type: "google",
               },
-
-              google_id: profile.id,
-              role: "sudac",
-              uloga: null
-
             });
           }
 

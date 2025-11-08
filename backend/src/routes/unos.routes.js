@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
       decoded.id,
       {
         ime,
-        uloga,
+        role: uloga,
         imeKluba: uloga === "voditelj" ? imeKluba : null,
       },
       { new: true }

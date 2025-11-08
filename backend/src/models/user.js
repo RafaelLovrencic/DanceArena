@@ -2,10 +2,11 @@ const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema({
   role: {
-    type: String,
-    enum: ['organizator', 'voditelj', 'sudac', 'admin'],
-    required: true
-  },
+  type: String,
+  enum: ['organizator', 'voditelj', 'sudac', 'admin'],
+  required: false,
+    },
+
   ime: {
     type: String,
     required: true

@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 5001;
 
 app.use(
   cors({
-    origin: "http://localhost:5173", // trenutno zbog testiranja dok još stranica nije na serveru
+    origin: "http://localhost:5173", 
     credentials: true,
   })
 );
