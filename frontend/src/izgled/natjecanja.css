@@ -6,6 +6,7 @@ body {
   font-family: 'Inter';
   font-style: normal;
   box-sizing: border-box;
+  background-color: black;
 }
 
 .naslov-sekcija {
@@ -13,7 +14,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 350px;
+  min-height: 350px;
+  height: auto;
   margin: 0;
   background-image: url("./pozadine/pozadinadobrodoslice.png");
   background-size: cover;        
@@ -206,7 +208,8 @@ body {
     }
 
     .naslov-sekcija {
-      height: 150px;
+      min-height: 150px;
+      height: auto;
     }
 
     .naslov {

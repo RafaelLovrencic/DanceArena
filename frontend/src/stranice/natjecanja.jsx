@@ -44,10 +44,10 @@ export default function Natjecanja() {
         setCompetitions((prev) => 
             prev.filter((comp) => comp._id !== odabranoNatjecanje._id));
         setOdabranoNatjecanje(null);
-        alert("Natjecanje uspješno obrisano");
+        /*alert("Natjecanje uspješno obrisano");*/
     } catch (err){
         console.error("Greška", err);
-        alert("Došlo je do greške pri brisanju natjecanja");
+        /*alert("Došlo je do greške pri brisanju natjecanja");*/
     };
     };
     const osvjeziNatjecanja = async () => {
