@@ -6,7 +6,11 @@ body {
   font-family: 'Inter';
   font-style: normal;
   box-sizing: border-box;
+}
+
+.boja {
   background-color: black;
+  min-height: 100vh;
 }
 
 .naslov-sekcija {

@@ -64,7 +64,8 @@ export default function Natjecanja() {
         <nav>
             <NavigacijskaTraka />
         </nav>
-        <section className="naslov-sekcija">
+        <div class="boja">
+            <section className="naslov-sekcija">
             <h1 className="naslov">Popis natjecanja</h1>
         </section>
         <section className="sekcija">
@@ -108,6 +109,7 @@ export default function Natjecanja() {
                 <button className="obrisi" onClick={obrisiNatjecanje} style={{backgroundColor: odabranoNatjecanje ? '#2CDE32' : 'rgba(23, 101, 25, 1)', cursor: odabranoNatjecanje ? 'pointer' : 'not-allowed'}}>Obriši natjecanje</button>
             </div>
         </section>
+        </div>
         {pokaziSucelje && (
             <DodajNatjecanje onClose={() => {
                     setPokaziSucelje(false);
