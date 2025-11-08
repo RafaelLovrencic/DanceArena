@@ -68,7 +68,7 @@ export default function Natjecanja() {
             <h1 className="naslov">Popis natjecanja</h1>
         </section>
         <section className="sekcija">
-            <div className="tablica-container" style={{height: competitions.length > 1 ? 'auto' : '150px'}}>
+            <div className="tablica-container">
                 {loading ? (
                     <p className="loader">Učitavanje...</p>
                 ) : competitions.length > 0 ? (
