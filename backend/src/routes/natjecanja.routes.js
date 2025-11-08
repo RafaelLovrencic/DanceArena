@@ -89,7 +89,15 @@ router.post("/add", async (req, res) => {
         for (const imeSuca of suci) {
             let sudac = await User.findOne({ ime: imeSuca });
             if (!sudac) {
-                sudac = new User({ ime: imeSuca, uloga: "sudac" });
+                sudac = new User({ 
+                    role: "sudac",
+                    ime: imeSuca,
+                    email: imeSuca + "@gmail.com",
+                    oauthProvider: {
+                        type: "testni provider",
+                        providerId: "test"
+                    }
+                });
                 await sudac.save();
             }
             suciIds.push(sudac._id);
@@ -97,9 +105,13 @@ router.post("/add", async (req, res) => {
 
         const kategorijeIds = [];
         for (const nazivKat of kategorije) {
-            let kategorija = await Kategorije.findOne({ naziv: nazivKat });
+            let kategorija = await Kategorije.findOne({ stil: nazivKat });
             if (!kategorija) {
-                kategorija = new Kategorije({ naziv: nazivKat });
+                kategorija = new Kategorije({
+                    godiste: "juniori",
+                    stil: nazivKat,
+                    velicina: "duo"
+                });
                 await kategorija.save();
             }
             kategorijeIds.push(kategorija._id);
