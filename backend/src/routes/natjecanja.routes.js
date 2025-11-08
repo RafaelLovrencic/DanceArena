@@ -85,6 +85,26 @@ router.post("/add", async (req, res) => {
 
         const { ime, opis, datum, lokacija, organizatorId, kategorije, suci } = req.body;
 
+        const suciIds = [];
+        for (const imeSuca of suci) {
+            let sudac = await User.findOne({ ime: imeSuca });
+            if (!sudac) {
+                sudac = new User({ ime: imeSuca, uloga: "sudac" });
+                await sudac.save();
+            }
+            suciIds.push(sudac._id);
+        }
+
+        const kategorijeIds = [];
+        for (const nazivKat of kategorije) {
+            let kategorija = await Kategorije.findOne({ naziv: nazivKat });
+            if (!kategorija) {
+                kategorija = new Kategorije({ naziv: nazivKat });
+                await kategorija.save();
+            }
+            kategorijeIds.push(kategorija._id);
+        }
+
         const novoNatjecanje = new Natjecanje({
             ime,
             opis,
