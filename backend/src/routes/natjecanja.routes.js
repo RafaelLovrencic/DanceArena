@@ -45,8 +45,15 @@ router.put("/:id", async (req, res) => {
     try {
         const { ime, opis, datum, lokacija, suci, kategorije } = req.body;
 
-        const suciIds = [];
-        if (Array.isArray(suci)) {
+        const updateData = {};
+
+        if (ime) updateData.ime = ime;
+        if (opis) updateData.opis = opis;
+        if (datum) updateData.datum = datum;
+        if (lokacija) updateData.lokacija = lokacija;
+
+        if (Array.isArray(suci) && suci.length > 0) {
+            const suciIds = [];
             for (const imeSuca of suci) {
                 let sudac = await User.findOne({ ime: imeSuca });
                 if (!sudac) {
@@ -55,43 +62,24 @@ router.put("/:id", async (req, res) => {
                 }
                 suciIds.push(sudac._id);
             }
+            updateData.suci = suciIds;
         }
 
-        const kategorijeIds = [];
-        if (Array.isArray(kategorije)) {
-            for (const kat of kategorije) {
-                let query = {};
+        if (Array.isArray(kategorije) && kategorije.length === 3) {
+            const [godiste, stil, velicina] = kategorije;
 
-                if (typeof kat === "object") {
-                    query = {
-                        godiste: kat.godiste,
-                        stil: kat.stil,
-                        velicina: kat.velicina,
-                    };
-                } else if (typeof kat === "string") {
-                    query = { naziv: kat };
-                }
-
-                let kategorija = await Kategorije.findOne(query);
-                if (!kategorija) {
-                    kategorija = new Kategorije(query);
-                    await kategorija.save();
-                }
-
-                kategorijeIds.push(kategorija._id);
+            let kategorija = await Kategorije.findOne({ godiste, stil, velicina });
+            if (!kategorija) {
+                kategorija = new Kategorije({ godiste, stil, velicina });
+                await kategorija.save();
             }
+
+            updateData.kategorije = [kategorija._id];
         }
 
         const azurirano = await Natjecanje.findByIdAndUpdate(
             req.params.id,
-            {
-                ime,
-                opis,
-                datum,
-                lokacija,
-                suci: suciIds,
-                kategorije: kategorijeIds,
-            },
+            updateData,
             { new: true }
         )
             .populate("suci", "ime email")
@@ -101,6 +89,7 @@ router.put("/:id", async (req, res) => {
             return res.status(404).json({ poruka: "Natjecanje nije pronađeno" });
 
         res.json({ poruka: "Natjecanje uspješno ažurirano", natjecanje: azurirano });
+    
     } catch (err) {
         console.error("Greška pri ažuriranju natjecanja:", err);
         res.status(500).json({ poruka: "Greška pri ažuriranju natjecanja" });
