@@ -43,20 +43,64 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     try {
+        const { ime, opis, datum, lokacija, suci, kategorije } = req.body;
 
-        const { id } = req.params;
-        const updateData = req.body;
-
-        const updated = await Natjecanje.findByIdAndUpdate(id, updateData, {
-            new: true,
-            runValidators: true
-        });
-
-        if (!updated) {
-            return res.status(404).json({ poruka: "Natjecanje nije pronađeno" });
+        const suciIds = [];
+        if (Array.isArray(suci)) {
+            for (const imeSuca of suci) {
+                let sudac = await User.findOne({ ime: imeSuca });
+                if (!sudac) {
+                    sudac = new User({ ime: imeSuca, uloga: "sudac" });
+                    await sudac.save();
+                }
+                suciIds.push(sudac._id);
+            }
         }
-        res.json({ poruka: "Natjecanje ažurirano", natjecanje: updated });
-    
+
+        const kategorijeIds = [];
+        if (Array.isArray(kategorije)) {
+            for (const kat of kategorije) {
+                let query = {};
+
+                if (typeof kat === "object") {
+                    query = {
+                        godiste: kat.godiste,
+                        stil: kat.stil,
+                        velicina: kat.velicina,
+                    };
+                } else if (typeof kat === "string") {
+                    query = { naziv: kat };
+                }
+
+                let kategorija = await Kategorije.findOne(query);
+                if (!kategorija) {
+                    kategorija = new Kategorije(query);
+                    await kategorija.save();
+                }
+
+                kategorijeIds.push(kategorija._id);
+            }
+        }
+
+        const azurirano = await Natjecanje.findByIdAndUpdate(
+            req.params.id,
+            {
+                ime,
+                opis,
+                datum,
+                lokacija,
+                suci: suciIds,
+                kategorije: kategorijeIds,
+            },
+            { new: true }
+        )
+            .populate("suci", "ime email")
+            .populate("kategorije", "godiste stil velicina");
+
+        if (!azurirano)
+            return res.status(404).json({ poruka: "Natjecanje nije pronađeno" });
+
+        res.json({ poruka: "Natjecanje uspješno ažurirano", natjecanje: azurirano });
     } catch (err) {
         console.error("Greška pri ažuriranju natjecanja:", err);
         res.status(500).json({ poruka: "Greška pri ažuriranju natjecanja" });
@@ -109,14 +153,15 @@ router.post("/add", async (req, res) => {
             velicina: kategorije[2]
         });
 
-    if (!kategorijaDoc) {
-      kategorijaDoc = new Kategorije({
-        godiste: kategorije[0],
-        stil: kategorije[1],
-        velicina: kategorije[2]
-      });
-      await kategorijaDoc.save();
-    }
+        if (!kategorijaDoc) {
+            kategorijaDoc = new Kategorije({
+                godiste: kategorije[0],
+                stil: kategorije[1],
+                velicina: kategorije[2]
+            });
+        await kategorijaDoc.save();
+        }
+        
         const novoNatjecanje = new Natjecanje({
             ime,
             opis,
