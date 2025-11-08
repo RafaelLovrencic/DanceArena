@@ -13,6 +13,7 @@ export default function Natjecanja() {
         if (!odabranoNatjecanje) return;
         const response = await fetch(`http://localhost:5001/natjecanja/${odabranoNatjecanje._id}`);
         const data = await response.json();
+        console.log(data);
         setPodaciZaUredi(data);
         setPokaziSucelje(true);
     };
@@ -41,23 +42,32 @@ export default function Natjecanja() {
         } 
     }*/
    const obrisiNatjecanje = async () => {
-    try {
-        const response = await fetch (`http://localhost:5001/natjecanja/${odabranoNatjecanje._id}`, {
-            method: "DELETE",
-        });
-    if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.poruka || "Greška pri brisanju natjecanja");
+        try {
+            const response = await fetch (`http://localhost:5001/natjecanja/${odabranoNatjecanje._id}`, {
+                method: "DELETE",
+            });
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.poruka || "Greška pri brisanju natjecanja");
+        };
+        setCompetitions((prev) => 
+            prev.filter((comp) => comp._id !== odabranoNatjecanje._id));
+        setOdabranoNatjecanje(null);
+        alert("Natjecanje uspješno obrisano");
+    } catch (err){
+        console.error("Greška", err);
+        alert("Došlo je do greške pri brisanju natjecanja");
     };
-    setCompetitions((prev) => 
-        prev.filter((comp) => comp._id !== odabranoNatjecanje._id));
-    setOdabranoNatjecanje(null);
-    alert("Natjecanje uspješno obrisano");
-   } catch (err){
-    console.error("Greška", err);
-    alert("Došlo je do greške pri brisanju natjecanja");
-   };
-};
+    };
+    const osvjeziNatjecanja = async () => {
+        try {
+            const response = await fetch('http://localhost:5001/natjecanja');
+            const data = await response.json();
+            setCompetitions(data);
+        } catch (err) {
+            console.error('Greška kod dohvaćanja natjecanja:', err);
+        }
+    };
     return (
     <>
         <nav>
@@ -91,7 +101,7 @@ export default function Natjecanja() {
                                 <td>{comp.ime}</td>
                                 <td>{new Date(comp.datum).toLocaleDateString('hr-HR')}</td>
                                 <td>{comp.lokacija}</td>
-                                <td>{comp.kategorije?.length || '—'}</td>
+                                <td>{comp.kategorije?.[0]?.stil || '-'}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -112,6 +122,7 @@ export default function Natjecanja() {
                     setPokaziSucelje(false);
                     setPodaciZaUredi(null);
                     setOdabranoNatjecanje(null);
+                    osvjeziNatjecanja();
                 }}
                 natjecanjeZaUredi={podaciZaUredi}
             />

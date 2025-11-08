@@ -7,10 +7,10 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
     const [podaciNatjecanje, setPodaciNatjecanje] = useState(() => {
         if (natjecanjeZaUredi) {
             return {
-                ime: natjecanjeZaUredi.naziv || '',
+                ime: natjecanjeZaUredi.ime || '',
                 opis: natjecanjeZaUredi.opis || '',
                 datum: natjecanjeZaUredi.datum ? new Date(natjecanjeZaUredi.datum) : null,
-                lokacija: natjecanjeZaUredi.mjesto || '',
+                lokacija: natjecanjeZaUredi.lokacija || '',
                 kotizacija: natjecanjeZaUredi.kotizacija || '',
                 dobnaKategorija: natjecanjeZaUredi.kategorije?.[0]?.godiste || '',
                 stilPlesa: natjecanjeZaUredi.kategorije?.[0]?.stil || '',
@@ -27,13 +27,13 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
         const { name, value } = e.target;
         setPodaciNatjecanje(prev => ({ ...prev, [name]: value }));
     };
+    
     const pohraniPromjene = async (e) => {
         e.preventDefault();
         const suciPolje = podaciNatjecanje.suci
                     .split('\n')
                     .map(s => s.trim())
                     .filter(s => s !== '')
-                    .map(ime => ({ ime }));
         if (suciPolje.length < 3) return alert('Morate unijeti najmanje 3 suca.');
         if (suciPolje.length % 2 === 0) return alert('Broj sudaca mora biti neparan.');
 
@@ -42,19 +42,19 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
         ? `http://localhost:5001/natjecanja/${natjecanjeZaUredi._id}`
         : `http://localhost:5001/natjecanja/add`;
 
-        const kategorije = [{
-            godiste: podaciNatjecanje.dobnaKategorija,
-            stil: podaciNatjecanje.stilPlesa,
-            velicina: podaciNatjecanje.velicinaGrupa.replace(' ', '_'), 
-        }];
+        const kategorijePolje = [
+            podaciNatjecanje.dobnaKategorija,
+            podaciNatjecanje.stilPlesa,
+            podaciNatjecanje.velicinaGrupa.replace(' ', '_')
+        ];
         const podaci = {
             ime: podaciNatjecanje.ime,
             opis: podaciNatjecanje.opis,
             datum: podaciNatjecanje.datum ? podaciNatjecanje.datum.toISOString() : null,
             lokacija: podaciNatjecanje.lokacija,
             organizatorId: "672d94abbe7dfc43f96ed7a0", 
-            kategorije: [],
-            suci: []
+            kategorije: kategorijePolje,
+            suci: suciPolje
         };
 
         try {
@@ -90,7 +90,7 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                     </div>
                     <div className="datumNatj">
                         <label>Datum natjecanja:</label>
-                        <DatePicker selected={podaciNatjecanje.datum} onChange={(date) => setPodaciNatjecanje(prev => ({ ...prev, datum: date }))} dateFormat="dd.MM.yyyy" required/>
+                        <DatePicker selected={podaciNatjecanje.datum} onChange={(date) => setPodaciNatjecanje(prev => ({ ...prev, datum: date }))} dateFormat="dd.MM.yyyy" minDate={podaciNatjecanje.datum ? new Date(podaciNatjecanje.datum) : new Date()} required/>
                     </div>
                     <div className="lokacijaNatj">
                         <label>Lokacija:</label>
