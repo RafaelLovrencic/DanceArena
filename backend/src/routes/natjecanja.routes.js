@@ -103,27 +103,27 @@ router.post("/add", async (req, res) => {
             suciIds.push(sudac._id);
         }
 
-        const kategorijeIds = [];
-        for (const nazivKat of kategorije) {
-            let kategorija = await Kategorije.findOne({ stil: nazivKat });
-            if (!kategorija) {
-                kategorija = new Kategorije({
-                    godiste: "juniori",
-                    stil: nazivKat,
-                    velicina: "duo"
-                });
-                await kategorija.save();
-            }
-            kategorijeIds.push(kategorija._id);
-        }
+        let kategorijaDoc = await Kategorije.findOne({
+            godiste: kategorije[0],
+            stil: kategorije[1],
+            velicina: kategorije[2]
+        });
 
+    if (!kategorijaDoc) {
+      kategorijaDoc = new Kategorije({
+        godiste: kategorije[0],
+        stil: kategorije[1],
+        velicina: kategorije[2]
+      });
+      await kategorijaDoc.save();
+    }
         const novoNatjecanje = new Natjecanje({
             ime,
             opis,
             datum,
             lokacija,
             organizatorId,
-            kategorije: kategorijeIds,
+            kategorije: [kategorijaDoc._id],
             suci: suciIds
         });
 
