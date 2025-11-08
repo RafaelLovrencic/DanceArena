@@ -87,7 +87,7 @@
     justify-content: center;
 }
 
-.formaZaNatjecanja .sudci textarea{
+.formaZaNatjecanja .suci textarea{
     width: 300px;
     height: 80px;
     background: #E3C1EE;
@@ -105,7 +105,7 @@
     font-style: normal;
 }
 
-.sudci textarea::placeholder {
+.suci textarea::placeholder {
     color: #AB58C7; 
     opacity: 1;       
     font-style: italic; 

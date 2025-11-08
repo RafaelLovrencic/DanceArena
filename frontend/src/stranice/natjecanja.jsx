@@ -9,11 +9,22 @@ export default function Natjecanja() {
     const [pokaziSucelje, setPokaziSucelje] = useState(false);
     const [odabranoNatjecanje, setOdabranoNatjecanje] = useState(null);
     const [podaciZaUredi, setPodaciZaUredi] = useState(null)
-    const dohvatiPodatkeONatjecanju = async (id) => {
-        const response = await fetch(`http://localhost:5000/natjecanja/${odabranoNatjecanje.id}`);
+    const dohvatiPodatkeONatjecanju = async () => {
+        if (!odabranoNatjecanje) return;
+        const response = await fetch(`http://localhost:5001/natjecanja/${odabranoNatjecanje._id}`);
         const data = await response.json();
-        setPodaciZaUredi(data);  
-        setPokaziSucelje(true); 
+        setPodaciZaUredi(data);
+        setPokaziSucelje(true);
+    };
+    const test = async () => 
+    { try 
+        { const response = await fetch("http://localhost:5001/natjecanja/690e668b652282d76a7b68fa"); 
+            const data = await response.json(); 
+            console.log(data); 
+        } catch (err) 
+        { 
+            console.error("Greška:", err); 
+        } 
     }
     return (
     <>
@@ -59,7 +70,7 @@ export default function Natjecanja() {
             <div className="gumbovi">
                 <button className="dodaj" onClick={() => setPokaziSucelje(true)}>Dodaj natjecanje</button>
                 <button className="uredi" onClick={dohvatiPodatkeONatjecanju} style={{backgroundColor: odabranoNatjecanje ? '#2CDE32' : 'rgba(23, 101, 25, 1)', cursor: odabranoNatjecanje ? 'pointer' : 'not-allowed'}}>Uredi natjecanje</button>
-                <button className="obrisi">Obriši natjecanje</button>
+                <button className="obrisi" onClick={test}>Obriši natjecanje</button>
             </div>
         </section>
         {pokaziSucelje && (

@@ -12,15 +12,15 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                 datum: natjecanjeZaUredi.datum ? new Date(natjecanjeZaUredi.datum) : null,
                 lokacija: natjecanjeZaUredi.mjesto || '',
                 kotizacija: natjecanjeZaUredi.kotizacija || '',
-                dobnaKategorija: natjecanjeZaUredi.kategorija || '',
-                stilPlesa: natjecanjeZaUredi.stil || '',
-                velicinaGrupa: natjecanjeZaUredi.velicina || '',
-                sudci: (natjecanjeZaUredi.sudci || []).join('\n'),
+                dobnaKategorija: natjecanjeZaUredi.kategorije?.[0]?.godiste || '',
+                stilPlesa: natjecanjeZaUredi.kategorije?.[0]?.stil || '',
+                velicinaGrupa: natjecanjeZaUredi.kategorije?.[0]?.velicina.replace('_', ' ') || '',
+                suci: (natjecanjeZaUredi.suci || []).map(s => s.ime).join('\n'),
             };
         }
         return {
             ime: '', opis: '', datum: null, lokacija: '', kotizacija: '',
-            dobnaKategorija: '', stilPlesa: '', velicinaGrupa: '', sudci: ''
+            dobnaKategorija: '', stilPlesa: '', velicinaGrupa: '', suci: ''
         };
     });
     const napraviPromjenu = (e) => {
@@ -29,15 +29,34 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
     };
     const pohraniPromjene = async (e) => {
         e.preventDefault();
-        const sudciPolje = podaciNatjecanje.sudci.split('\n').map(s => s.trim()).filter(s => s !== '');;
-        if (sudciPolje.length < 3) return alert('Morate unijeti najmanje 3 suca.');
-        if (sudciPolje.length % 2 === 0) return alert('Broj sudaca mora biti neparan.');
+        const suciPolje = podaciNatjecanje.suci
+                    .split('\n')
+                    .map(s => s.trim())
+                    .filter(s => s !== '')
+                    .map(ime => ({ ime }));
+        if (suciPolje.length < 3) return alert('Morate unijeti najmanje 3 suca.');
+        if (suciPolje.length % 2 === 0) return alert('Broj sudaca mora biti neparan.');
 
         const method = natjecanjeZaUredi ? 'PUT' : 'POST';
         const url = natjecanjeZaUredi 
-        ? `http://localhost:5000/natjecanja/${natjecanjeZaUredi.id}`
-        : `http://localhost:5000/natjecanja`;
-        const podaci = {...podaciNatjecanje, sudci: sudciPolje};
+        ? `http://localhost:5001/natjecanja/${natjecanjeZaUredi._id}`
+        : `http://localhost:5001/natjecanja/add`;
+
+        const kategorije = [{
+            godiste: podaciNatjecanje.dobnaKategorija,
+            stil: podaciNatjecanje.stilPlesa,
+            velicina: podaciNatjecanje.velicinaGrupa.replace(' ', '_'), 
+        }];
+        const podaci = {
+            ime: podaciNatjecanje.ime,
+            opis: podaciNatjecanje.opis,
+            datum: podaciNatjecanje.datum ? podaciNatjecanje.datum.toISOString() : null,
+            lokacija: podaciNatjecanje.lokacija,
+            organizatorId: "672d94abbe7dfc43f96ed7a0", 
+            kategorije: [],
+            suci: []
+        };
+
         try {
             const response = await fetch(url, { 
                 method,
@@ -111,12 +130,12 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                         <label>Kotizacija:</label>
                         <input name="kotizacija" type='text' value={podaciNatjecanje.kotizacija} onChange={napraviPromjenu} required/>
                     </div>
-                    <div className='sudci'>
-                        <label>Sudci:</label>
-                        <textarea name="sudci" type='text' placeholder={'Ivan Horvat\nAna Kovač\nMarko Babić\n...'} value={podaciNatjecanje.sudci} onChange={napraviPromjenu} required/>
+                    <div className='suci'>
+                        <label>Suci:</label>
+                        <textarea name="suci" type='text' placeholder={'Ivan Horvat\nAna Kovač\nMarko Babić\n...'} value={podaciNatjecanje.suci} onChange={napraviPromjenu} required/>
                     </div>
                     <div className='submitOdustani'>
-                        <button type="submit">Stvori natjecanje</button>
+                        <button type="submit">Pohrani podatke</button>
                         <button type='button' onClick={onClose}>Odustani</button>
                     </div>
                 </form>
