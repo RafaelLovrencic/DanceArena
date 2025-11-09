@@ -4,11 +4,13 @@ import profil from '../izgled/pozadine/profilIkona.png';
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { PORT } from '../config.js';
+import { useAuth } from "../kontekst/AuthContext";
 
-export default function NavigacijskaTraka({ korisnik }) {
-  const [burgerKlasa, setBurgerKlasa] = useState("burgerBar nekliknut")
-  const [meniKlasa, setMeniKlasa] = useState("meni skriven")
-  const [meniAktivan, setMeniAktivan] = useState(false)
+export default function NavigacijskaTraka() {
+  const [burgerKlasa, setBurgerKlasa] = useState("burgerBar nekliknut");
+  const [meniKlasa, setMeniKlasa] = useState("meni skriven");
+  const [meniAktivan, setMeniAktivan] = useState(false);
+  const { korisnik } = useAuth();
 
   const azurirajMeni = () => {
     if(!meniAktivan) {
