@@ -2,6 +2,7 @@ import { useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../izgled/suceljeDodajNatjecanja.css';
+import { PORT } from "../config";
 
 export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
     const [podaciNatjecanje, setPodaciNatjecanje] = useState(() => {
@@ -39,8 +40,8 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
 
         const method = natjecanjeZaUredi ? 'PUT' : 'POST';
         const url = natjecanjeZaUredi 
-        ? `http://localhost:5001/natjecanja/${natjecanjeZaUredi._id}`
-        : `http://localhost:5001/natjecanja/add`;
+        ? `http://localhost:${PORT}/natjecanja/${natjecanjeZaUredi._id}`
+        : `http://localhost:${PORT}/natjecanja/add`;
 
         const kategorijePolje = [
             podaciNatjecanje.dobnaKategorija,

@@ -52,5 +52,4 @@ app.use("/unospodataka", unosRuter);
 
 app.listen(PORT, () => {
   console.log(`Server radi na http://localhost:${PORT}`);
-  console.log(`Server radi na http://localhost:${PORT}`);
 });

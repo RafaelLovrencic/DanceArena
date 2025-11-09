@@ -2,8 +2,11 @@ import '../izgled/natjecanja.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx'
 import DodajNatjecanje from "./suceljeDodajNatjecanje.jsx";
 import {useState, useEffect} from 'react'
+import { PORT } from "../config";
+import { useAuth } from "../kontekst/AuthContext";
 
 export default function Natjecanja() {
+    const { korisnik } = useAuth();
     const [loading, setLoading] = useState(true);
     const [competitions, setCompetitions] = useState([]);
     const [pokaziSucelje, setPokaziSucelje] = useState(false);
@@ -11,7 +14,7 @@ export default function Natjecanja() {
     const [podaciZaUredi, setPodaciZaUredi] = useState(null);
     const dohvatiPodatkeONatjecanju = async () => {
         if (!odabranoNatjecanje) return;
-        const response = await fetch(`http://localhost:5001/natjecanja/${odabranoNatjecanje._id}`);
+        const response = await fetch(`http://localhost:${PORT}/natjecanja/${odabranoNatjecanje._id}`);
         const data = await response.json();
         console.log(data);
         setPodaciZaUredi(data);
@@ -20,7 +23,7 @@ export default function Natjecanja() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5001/natjecanja');
+                const response = await fetch(`http://localhost:${PORT}/natjecanja`);
                 const data = await response.json();
                 setCompetitions(data);
             } catch (err) {
@@ -34,7 +37,7 @@ export default function Natjecanja() {
 
    const obrisiNatjecanje = async () => {
         try {
-            const response = await fetch (`http://localhost:5001/natjecanja/${odabranoNatjecanje._id}`, {
+            const response = await fetch (`http://localhost:${PORT}/natjecanja/${odabranoNatjecanje._id}`, {
                 method: "DELETE",
             });
         if (!response.ok) {
@@ -52,7 +55,7 @@ export default function Natjecanja() {
     };
     const osvjeziNatjecanja = async () => {
         try {
-            const response = await fetch('http://localhost:5001/natjecanja');
+            const response = await fetch(`http://localhost:${PORT}/natjecanja`);
             const data = await response.json();
             setCompetitions(data);
         } catch (err) {
@@ -104,9 +107,13 @@ export default function Natjecanja() {
                 )}
             </div> 
             <div className="gumbovi">
-                <button className="dodaj" onClick={() => setPokaziSucelje(true)}>Dodaj natjecanje</button>
-                <button className="uredi" onClick={dohvatiPodatkeONatjecanju} style={{backgroundColor: odabranoNatjecanje ? '#2CDE32' : 'rgba(23, 101, 25, 1)', cursor: odabranoNatjecanje ? 'pointer' : 'not-allowed'}}>Uredi natjecanje</button>
-                <button className="obrisi" onClick={obrisiNatjecanje} style={{backgroundColor: odabranoNatjecanje ? '#2CDE32' : 'rgba(23, 101, 25, 1)', cursor: odabranoNatjecanje ? 'pointer' : 'not-allowed'}}>Obriši natjecanje</button>
+                {korisnik?.role === "organizator" && (
+                <>
+                    <button className="dodaj" onClick={() => setPokaziSucelje(true)}>Dodaj natjecanje</button>
+                    <button className="uredi" onClick={dohvatiPodatkeONatjecanju} style={{backgroundColor: odabranoNatjecanje ? '#2CDE32' : 'rgba(23, 101, 25, 1)', cursor: odabranoNatjecanje ? 'pointer' : 'not-allowed'}}>Uredi natjecanje</button>
+                    <button className="obrisi" onClick={obrisiNatjecanje} style={{backgroundColor: odabranoNatjecanje ? '#2CDE32' : 'rgba(23, 101, 25, 1)', cursor: odabranoNatjecanje ? 'pointer' : 'not-allowed'}}>Obriši natjecanje</button>
+                </>
+                )}
             </div>
         </section>
         </div>
