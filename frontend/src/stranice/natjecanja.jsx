@@ -67,7 +67,7 @@ export default function Natjecanja() {
         <nav>
             <NavigacijskaTraka />
         </nav>
-        <div class="boja">
+        <div className="boja">
             <section className="naslov-sekcija">
             <h1 className="naslov">Popis natjecanja</h1>
         </section>

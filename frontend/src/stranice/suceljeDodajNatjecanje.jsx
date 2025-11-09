@@ -3,8 +3,10 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import '../izgled/suceljeDodajNatjecanja.css';
 import { PORT } from "../config";
+import { useAuth } from "../kontekst/AuthContext";
 
 export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
+    const { korisnik } = useAuth();
     const [podaciNatjecanje, setPodaciNatjecanje] = useState(() => {
         if (natjecanjeZaUredi) {
             return {
@@ -53,7 +55,8 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
             opis: podaciNatjecanje.opis,
             datum: podaciNatjecanje.datum ? podaciNatjecanje.datum.toISOString() : null,
             lokacija: podaciNatjecanje.lokacija,
-            organizatorId: "672d94abbe7dfc43f96ed7a0", 
+            organizatorId: korisnik._id, 
+            kotizacija: Number(podaciNatjecanje.kotizacija),
             kategorije: kategorijePolje,
             suci: suciPolje
         };
@@ -128,7 +131,7 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                         </select>
                     </div>
                     <div className='kotizacija'>
-                        <label>Kotizacija:</label>
+                        <label>Kotizacija u €:</label>
                         <input name="kotizacija" type='text' value={podaciNatjecanje.kotizacija} onChange={napraviPromjenu} required/>
                     </div>
                     <div className='suci'>

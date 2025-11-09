@@ -1,11 +1,10 @@
-import { useAuth } from "../kontekst/AuthContext";
 import "../izgled/naslovnica.css";
 import NavigacijskaTraka from "./navigacijskatraka.jsx";
 import {Link} from 'react-router-dom';
+import { useAuth } from "../kontekst/AuthContext";
 
 export default function Naslovnica() {
   const { loading } = useAuth();
-
   return (
     <>
       <nav>

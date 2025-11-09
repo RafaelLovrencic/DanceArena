@@ -8,11 +8,10 @@ require("dotenv").config();
 const homeRuter = require('./src/routes/home.routes')
 const authRuter = require("./src/routes/auth.routes");
 const unosRuter = require("./src/routes/unos.routes");
+const natjecanjaRuter = require("./src/routes/natjecanja.routes");
+
 
 const app = express();
-
-
-app.use(express.json()); // da dopustimo JSON body u POST requestu
 
 app.use(express.json()); // da dopustimo JSON body u POST requestu
 
@@ -49,6 +48,7 @@ app.use(passport.initialize());
 app.use('/', homeRuter)
 app.use("/auth", authRuter);
 app.use("/unospodataka", unosRuter);
+app.use("/natjecanja", natjecanjaRuter);
 
 app.listen(PORT, () => {
   console.log(`Server radi na http://localhost:${PORT}`);

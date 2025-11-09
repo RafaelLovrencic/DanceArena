@@ -2,7 +2,7 @@ const express = require("express");
 const User = require("../models/user");
 const Kategorije = require("../models/kategorije");
 const Natjecanje = require("../models/natjecanje");
-
+const mongoose = require("mongoose");
 
 const router = express.Router();
 
@@ -43,7 +43,7 @@ router.get("/:id", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
     try {
-        const { ime, opis, datum, lokacija, suci, kategorije } = req.body;
+        const { ime, opis, datum, lokacija, suci, kategorije, kotizacija } = req.body;
 
         const updateData = {};
 
@@ -51,6 +51,7 @@ router.put("/:id", async (req, res) => {
         if (opis) updateData.opis = opis;
         if (datum) updateData.datum = datum;
         if (lokacija) updateData.lokacija = lokacija;
+        if (kotizacija) updateData.kotizacija = kotizacija;
 
         if (Array.isArray(suci) && suci.length > 0) {
             const suciIds = [];
@@ -116,7 +117,7 @@ router.delete("/:id", async (req, res) => {
 router.post("/add", async (req, res) => {
     try {
 
-        const { ime, opis, datum, lokacija, organizatorId, kategorije, suci } = req.body;
+        const { ime, opis, datum, lokacija, organizatorId, kategorije, suci, kotizacija } = req.body;
 
         const suciIds = [];
         for (const imeSuca of suci) {
@@ -154,11 +155,12 @@ router.post("/add", async (req, res) => {
         const novoNatjecanje = new Natjecanje({
             ime,
             opis,
-            datum,
+            datum: new Date(datum),          
             lokacija,
-            organizatorId,
+            organizatorId: new mongoose.Types.ObjectId(organizatorId),
             kategorije: [kategorijaDoc._id],
-            suci: suciIds
+            suci: suciIds,
+            kotizacija: kotizacija ? Number(kotizacija) : 0      
         });
 
         await novoNatjecanje.save();
