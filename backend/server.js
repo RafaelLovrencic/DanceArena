@@ -14,6 +14,8 @@ const app = express();
 
 app.use(express.json()); // da dopustimo JSON body u POST requestu
 
+app.use(express.json()); // da dopustimo JSON body u POST requestu
+
 app.get('/', (req, res) => {
     res.send('Dobrodošli na našu testnu stranicu!!!');
 });
@@ -49,5 +51,6 @@ app.use("/auth", authRuter);
 app.use("/unospodataka", unosRuter);
 
 app.listen(PORT, () => {
+  console.log(`Server radi na http://localhost:${PORT}`);
   console.log(`Server radi na http://localhost:${PORT}`);
 });

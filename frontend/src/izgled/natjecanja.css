@@ -1,0 +1,251 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter';
+  font-style: normal;
+  box-sizing: border-box;
+}
+
+.boja {
+  background-color: black;
+  min-height: 100vh;
+}
+
+.naslov-sekcija {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  height: auto;
+  margin: 0;
+  background-image: url("./pozadine/pozadinadobrodoslice.png");
+  background-size: cover;        
+  background-position: center;   
+  background-repeat: no-repeat; 
+}
+
+.sekcija {
+  padding: 40px;
+  text-align: center;
+  background-color: black;
+}
+
+.naslov {
+  width: 578px;
+  height: 88px;
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 80px;
+  line-height: 110%;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  margin: 0 auto;
+  letter-spacing: -0.02em;
+  color: #AB58C7;
+}
+
+.tablica-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tablica {
+  width: 100%;
+  margin: 0;
+  border-collapse: collapse;
+  background: #fff;
+  min-width: 600px;
+  background: #1E1E1E;
+}
+
+.tablica th, .tablica td {
+  padding: 12px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.tablica th {
+  background: #AB58C7;
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #E3C1EE;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 145%;
+  color: #FFFFFF;
+}
+
+.tablica td {
+  border-width: 2px 0px;
+  border-style: solid;
+  border-color: #E3C1EE;
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 145%;
+  color: #FFFFFF;
+}
+
+.tablica tr:hover {
+  background-color: rgb(47, 42, 42);
+}
+
+.tablica tr.selected {
+  background-color: rgb(16, 70, 18);
+}
+
+.gumbovi {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 100px;
+  gap: 20px;
+}
+
+.gumbovi > button {
+  background: #2CDE32;
+  border-radius: 12px;
+  border: 0;
+  padding: 10px 20px;
+  min-width: 140px;
+  white-space: nowrap;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  font-size: inherit;
+  font-weight: normal;
+}
+
+.gumbovi > button:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.nema {
+    font-size: 1.2rem;      
+    color: white;            
+    margin-top: 20px;       
+    margin-bottom: 20px;    
+    text-align: center;    
+    font-style: italic;     
+}
+
+.loader {
+  font-size: 1.2rem;      
+  color: white;            
+  margin-top: 20px;       
+  margin-bottom: 20px;    
+  text-align: center;    
+  font-style: italic;   
+}
+
+.tablica tbody tr {
+  cursor: pointer;
+}
+
+@media (max-width: 700px){
+    .tablica {
+      min-width: 0;
+    }
+
+    .tablica-container {
+      overflow-x: visible;
+      box-shadow: none;
+    }
+
+    .tablica thead {
+      display: none;
+    }
+    
+    .tablica, .tablica tbody, .tablica tr, .tablica td {
+      display: block;
+      width: 100%;
+    }
+
+    .tablica tr {
+      border: solid;
+      border-color: #E3C1EE;
+      text-align: center;
+    }
+
+    .tablica tr:hover {
+      background-color: transparent;
+    }
+
+    .tablica td {
+      border: none;
+      text-align: center;
+    }
+
+    .gumbovi {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .gumbovi > button {
+      width: 100%;
+      max-width: 250px;
+      font-size: 1.1rem;
+    }
+
+    .gumbovi > button:hover{
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    .naslov-sekcija {
+      min-height: 150px;
+      height: auto;
+    }
+
+    .naslov {
+      width: 327px;
+      height: 48px;
+      font-size: 1.69rem;
+    }
+    .tablica tr.selected {
+      background-color: rgb(16, 70, 18) !important;
+    }
+
+}
+
+@media (max-width: 800px){
+    .tablica td {
+      padding-left: -5px;
+    }
+    
+    .tablica th, .tablica td{
+        padding: 10px 20px 10px 0px;
+    }
+
+    .sekcija {
+        padding: 20px;
+    }
+
+    .gumbovi > button {
+        width: 70px;
+        padding: 6px;
+        font-size: 0.85rem;
+    }
+    .tablica tr.selected {
+      background-color: rgb(16, 70, 18) !important;
+    }
+}

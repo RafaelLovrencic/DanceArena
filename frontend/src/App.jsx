@@ -3,6 +3,7 @@ import Naslovnica from './stranice/naslovnica.jsx'
 import UnosPodataka from './stranice/unospodataka.jsx';
 import Profil from './stranice/profil.jsx';
 import { AuthProvider } from "./kontekst/AuthContext";
+import Natjecanja from './stranice/natjecanja.jsx'
 
 export default function App() {
   return (
@@ -12,7 +13,8 @@ export default function App() {
           <Route path="/" element={<Naslovnica />} />
           <Route path="/unospodataka" element={<UnosPodataka />} />
           <Route path="/profil" element={<Profil />} />
-        </Routes>
+          <Route path="/natjecanja" element={<Natjecanja />} />
+      </Routes>
       </BrowserRouter>
     </AuthProvider>
   );
