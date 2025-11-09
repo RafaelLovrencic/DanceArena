@@ -2,49 +2,33 @@ import '../izgled/unospodataka.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx';
 import { useState, useEffect } from 'react';
 import { PORT } from '../config.js';
+import { useAuth } from "../kontekst/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function UnosPodataka() {
-  const [korisnik, setKorisnik] = useState(null);
+  const { korisnik, loading } = useAuth();
   const [uloga, setUloga] = useState('');
   const [ime, setIme] = useState('');
   const [lokacija, setLokacija] = useState('');
   const [imeKluba, setImeKluba] = useState('');
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
-  const dohvatiKorisnika = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:${PORT}/auth/provjera-autentifikacije`,
-        { credentials: "include" }
-      );
-
-      if (!response.ok) {
-        window.location.replace("/");
-        return;
-      }
-
-      const podaci = await response.json();
-      setKorisnik(podaci.korisnik);
-      setIme(podaci.korisnik.ime || "");
-      setUloga(podaci.korisnik.role || "");
-      
-      // ako korisnik već ima ulogu blokiram pristup i redirectam na naslovnicu
-      if (podaci.korisnik.role) {
-        window.location.replace("/");
-        return;
-      }
-
-      setLoading(false);
-    } catch (err) {
-      console.error(err);
-      window.location.replace("/");
+    if (!loading && !korisnik) {
+      navigate("/", { replace: true });
+      return;
     }
-  };
 
-  dohvatiKorisnika();
-  }, []);
+    if (!loading && korisnik?.role) {
+      navigate("/", { replace: true });
+      return;
+    }
+
+    if (korisnik) {
+      setIme(korisnik.ime || "");
+    }
+  }, [korisnik, loading]);
 
   const posaljiPodatke = async (e) => {
     e.preventDefault(); 
@@ -83,7 +67,7 @@ export default function UnosPodataka() {
   return (
   <>
     <nav>
-      <NavigacijskaTraka korisnik={korisnik} />
+      <NavigacijskaTraka />
     </nav>
     <section className='okvirZaPocetakPrijave'>
         <h1 className='dovrsiPrijavu'>Dovrši prijavu!</h1>

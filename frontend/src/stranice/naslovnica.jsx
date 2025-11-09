@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
 import { useAuth } from "../kontekst/AuthContext";
 import "../izgled/naslovnica.css";
 import NavigacijskaTraka from "./navigacijskatraka.jsx";
-import { PORT } from '../config.js';
 
 export default function Naslovnica() {
-  const { korisnik, loading } = useAuth();
+  const { loading } = useAuth();
 
   return (
     <>
