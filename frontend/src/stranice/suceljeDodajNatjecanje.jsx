@@ -56,7 +56,7 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
             datum: podaciNatjecanje.datum ? podaciNatjecanje.datum.toISOString() : null,
             lokacija: podaciNatjecanje.lokacija,
             organizatorId: korisnik._id, 
-            kotizacija: Number(podaciNatjecanje.kotizacija),
+            kotizacija: podaciNatjecanje.kotizacija,
             kategorije: kategorijePolje,
             suci: suciPolje
         };
@@ -94,7 +94,7 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                     </div>
                     <div className="datumNatj">
                         <label>Datum natjecanja:</label>
-                        <DatePicker selected={podaciNatjecanje.datum} onChange={(date) => setPodaciNatjecanje(prev => ({ ...prev, datum: date }))} dateFormat="dd.MM.yyyy" minDate={podaciNatjecanje.datum ? new Date(podaciNatjecanje.datum) : new Date()} required/>
+                        <DatePicker selected={podaciNatjecanje.datum} onChange={(date) => setPodaciNatjecanje(prev => ({ ...prev, datum: date }))} dateFormat="dd.MM.yyyy" minDate={new Date()} required/>
                     </div>
                     <div className="lokacijaNatj">
                         <label>Lokacija:</label>
@@ -131,7 +131,7 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                         </select>
                     </div>
                     <div className='kotizacija'>
-                        <label>Kotizacija u €:</label>
+                        <label>Kotizacija - €:</label>
                         <input name="kotizacija" type='text' value={podaciNatjecanje.kotizacija} onChange={napraviPromjenu} required/>
                     </div>
                     <div className='suci'>

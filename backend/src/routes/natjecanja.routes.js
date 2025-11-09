@@ -2,7 +2,6 @@ const express = require("express");
 const User = require("../models/user");
 const Kategorije = require("../models/kategorije");
 const Natjecanje = require("../models/natjecanje");
-const mongoose = require("mongoose");
 
 const router = express.Router();
 
@@ -58,7 +57,15 @@ router.put("/:id", async (req, res) => {
             for (const imeSuca of suci) {
                 let sudac = await User.findOne({ ime: imeSuca });
                 if (!sudac) {
-                    sudac = new User({ ime: imeSuca, uloga: "sudac" });
+                    sudac = new User({ 
+                    role: "sudac",
+                    ime: imeSuca,
+                    email: imeSuca + "@gmail.com",
+                    oauthProvider: {
+                        type: "testni provider",
+                        providerId: "test"
+                    }
+                });
                     await sudac.save();
                 }
                 suciIds.push(sudac._id);
@@ -150,17 +157,16 @@ router.post("/add", async (req, res) => {
                 velicina: kategorije[2]
             });
         await kategorijaDoc.save();
-        }
-        
+        }        
         const novoNatjecanje = new Natjecanje({
             ime,
             opis,
             datum: new Date(datum),          
             lokacija,
-            organizatorId: new mongoose.Types.ObjectId(organizatorId),
+            organizatorId,
             kategorije: [kategorijaDoc._id],
             suci: suciIds,
-            kotizacija: kotizacija ? Number(kotizacija) : 0      
+            kotizacija: kotizacija    
         });
 
         await novoNatjecanje.save();
