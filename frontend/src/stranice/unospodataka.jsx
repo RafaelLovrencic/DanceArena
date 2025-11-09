@@ -28,10 +28,10 @@ export default function UnosPodataka() {
       const podaci = await response.json();
       setKorisnik(podaci.korisnik);
       setIme(podaci.korisnik.ime || "");
-      setUloga(podaci.korisnik.uloga || "");
+      setUloga(podaci.korisnik.role || "");
       
       // ako korisnik već ima ulogu blokiram pristup i redirectam na naslovnicu
-      if (podaci.korisnik.uloga) {
+      if (podaci.korisnik.role) {
         window.location.replace("/");
         return;
       }

@@ -32,7 +32,7 @@ router.get("/google/callback",
         secure: process.env.NODE_ENV === "production",
       });
 
-      if (req.user.uloga) {
+      if (req.user.role) {
         return res.redirect("http://localhost:5173");
       }
 
