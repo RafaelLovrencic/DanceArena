@@ -1,6 +1,7 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const Korisnici = require("../models/user");
+const Klub = require("../models/klub");
 
 var router = express.Router();
 
@@ -13,7 +14,7 @@ router.post("/", async (req, res) => {
     if (!token) return res.status(401).json({ greska: "Nema tokena" });
 
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const { ime, uloga, imeKluba } = req.body;
+    const { ime, uloga, imeKluba, lokacija } = req.body;
 
     const korisnik = await Korisnici.findById(decoded.id);
     if (!korisnik) return res.status(404).json({ greska: "Korisnik nije pronađen" });
@@ -25,6 +26,22 @@ router.post("/", async (req, res) => {
     if (!ime || ime.trim() === "") return res.status(400).json({ greska: "Ime ne može biti prazno" });
     if (!uloga || !["sudac", "voditelj", "organizator"].includes(uloga))
       return res.status(400).json({ greska: "Nevaljana uloga" });
+
+        let klub = null;
+
+    //Ako je korisnik voditelj  stvori novi klub i poveži ga
+    if (uloga === "voditelj") {
+      if (!imeKluba || !lokacija) {
+        return res.status(400).json({ greska: "Ime kluba i lokacija su obavezni za voditelja" });
+      }
+
+      klub = await Klub.create({
+        ime: imeKluba,
+        lokacija,
+        email: korisnik.email,
+        ownerId: korisnik._id,
+      });
+    }
 
     const azuriranKorisnik = await Korisnici.findByIdAndUpdate(
       decoded.id,
