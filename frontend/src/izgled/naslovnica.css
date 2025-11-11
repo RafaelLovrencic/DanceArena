@@ -1,0 +1,163 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+  height: 100%;
+  font-family: 'Inter';
+  font-style: normal;
+  box-sizing: border-box;
+}
+
+html, body {
+    overflow-x: hidden;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #AB58C7;
+  height: 90px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px;
+}
+
+.brziStart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 426px;
+  margin: 0;
+  background-image: url("./pozadine/pozadinadobrodoslice.png");
+  background-size: cover;        
+  background-position: center;   
+  background-repeat: no-repeat; 
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dobrodoslica {
+  text-align: center;
+  color: #AB58C7; 
+  animation: fadeIn 0.8s ease forwards;
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 7vw;
+  margin-bottom: 30px;
+  margin-top: 0px;
+}
+
+.obavijesti {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 200px;
+  margin: 0;
+  background-color: #1E1E1E;
+  box-sizing: border-box; 
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.obavijestiTekst {
+  font-family: 'Sedan SC';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 4vw;
+  height: 150px;
+  width: 100%;
+  box-sizing: border-box;
+  border-width: 4px 20px 4px 0px;
+  border-style: solid;
+  border-color: #E3C1EE;
+  background-color: #AB58C7;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.precaci {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.precaci>* {
+  background: #2CDE32;
+  border-radius: 12px;
+  border: 0;
+  padding: 10px;
+  width: 100px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  font-size: inherit;
+  font-weight: normal;
+}
+
+.precaci>*:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 1024px) {
+  .brziStart {
+    min-height: 50vh;
+    background-position: top;
+  }
+  .obavijestiTekst {
+    font-size: 5vw;
+  }
+  .dobrodoslica {
+    font-size: 7vw;
+  }
+  .precaci {
+    flex-direction: column;
+  }
+  .precaci>button {
+    width: 200px;
+  }
+}
+
+@media (max-width: 500px) {
+  .brziStart {
+    height: 360px;
+  }
+  .dobrodoslica {
+    font-size: 40px;
+    width: 300px;
+  }
+  .obavijesti {
+    height: 120px;
+  }
+  .obavijestiTekst {
+    font-size: 6vw;
+    height: 100px;
+  }
+  .precaci>button:hover {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+}
+
+

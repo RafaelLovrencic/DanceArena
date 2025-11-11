@@ -1,0 +1,39 @@
+[
+  {
+    "ime": "Emanuel",
+    "prezime": "Horvat",
+    "uloga": "admin"
+  },
+  {
+    "ime": "Maja",
+    "prezime": "Kovač",
+    "uloga": "voditelj"
+  },
+  {
+    "ime": "Ivan",
+    "prezime": "Novak",
+    "uloga": "organizator"
+  },
+  {
+    "ime": "Petra",
+    "prezime": "Jurić",
+    "uloga": "sudac"
+  },
+  {
+    "Ime": "Ivan",
+    "Prezime": "Ivanović",
+    "Uloga": "sudac"
+  },
+  {
+    "Ime": "Petar",
+    "Prezime": "Stijena",
+    "Uloga": "voditelj",
+    "Ime_kluba": "Klub Aleksandra O",
+    "Lokacija": "Tamo daleko"
+  },
+  {
+    "Ime": "Matija",
+    "Prezime": "Cvek",
+    "Uloga": "organizator"
+  }
+]
