@@ -204,6 +204,8 @@ body {
       width: 100%;
       max-width: 250px;
       font-size: 1.1rem;
+      box-shadow: none;
+      transition: none; 
     }
 
     .gumbovi > button:hover{
