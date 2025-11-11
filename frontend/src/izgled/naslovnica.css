@@ -159,6 +159,7 @@ nav {
   .precaci>button {
     box-shadow: none;
     transition: none; 
+    width: 100px;
   }
 
   .precaci>button:hover {
