@@ -36,10 +36,10 @@ router.get("/google/callback",
         return res.redirect("https://dance-arena-devtrak.vercel.app");
       }
 
-      res.redirect("https://dance-arena-devtrak.vercel.app/unospodataka");
+      res.redirect("https://dance-arena-devtrak.vercel.app/nospodataka");
     } catch (err) {
       console.error("Greška u callback-u:", err);
-      res.redirect("https://dance-arena-devtrak.vercel.app/");
+      res.redirect("https://dance-arena-devtrak.vercel.app");
     }
   }
 );
