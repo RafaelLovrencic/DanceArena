@@ -28,8 +28,8 @@ router.get("/google/callback",
       res.cookie("token", token, {
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
-        sameSite: "none",
-        secure: process.env.NODE_ENV === "production",
+        sameSite: "None",
+        secure: true,
       });
 
       if (req.user.role) {
@@ -65,8 +65,8 @@ router.get("/provjera-autentifikacije", async (req, res) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
+    sameSite: "None",
+    secure: true,
   });
   res.json({ poruka: "Uspješno odjavljen" });
 });
