@@ -32,6 +32,8 @@ router.get("/google/callback",
         secure: true,
       });
 
+
+      console.log(res.cookie);
       if (req.user.role) {
         return res.redirect("https://dance-arena-devtrak.vercel.app");
       }
@@ -47,7 +49,6 @@ router.get("/google/callback",
 // Provjera autentifikacije
 router.get("/provjera-autentifikacije", async (req, res) => {
   try {
-    console.log(req.cookies);
     const token = req.cookies?.token;
     if (!token) return res.status(401).json({ greska: "Nema tokena" });
 
