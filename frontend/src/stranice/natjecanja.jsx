@@ -14,7 +14,7 @@ export default function Natjecanja() {
     const [podaciZaUredi, setPodaciZaUredi] = useState(null);
     const dohvatiPodatkeONatjecanju = async () => {
         if (!odabranoNatjecanje) return;
-        const response = await fetch(`${IP}/natjecanja/${odabranoNatjecanje._id}`);
+        const response = await fetch(`${IP}/natjecanja/${odabranoNatjecanje._id}`, {credentials: "include"});
         const data = await response.json();
         console.log(data);
         setPodaciZaUredi(data);
@@ -23,7 +23,7 @@ export default function Natjecanja() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${IP}/natjecanja`);
+                const response = await fetch(`${IP}/natjecanja`, {credentials: "include"});
                 const data = await response.json();
                 setCompetitions(data);
             } catch (err) {
@@ -39,6 +39,7 @@ export default function Natjecanja() {
         try {
             const response = await fetch (`${IP}/natjecanja/${odabranoNatjecanje._id}`, {
                 method: "DELETE",
+                credentials: "include"
             });
         if (!response.ok) {
             const errorData = await response.json();
@@ -55,7 +56,7 @@ export default function Natjecanja() {
     };
     const osvjeziNatjecanja = async () => {
         try {
-            const response = await fetch(`${IP}/natjecanja`);
+            const response = await fetch(`${IP}/natjecanja`, {credentials: "include"}, {credentials: "include"});
             const data = await response.json();
             setCompetitions(data);
         } catch (err) {

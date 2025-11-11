@@ -67,7 +67,8 @@ export default function DodajNatjecanje({onClose, natjecanjeZaUredi}) {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(podaci)
+                body: JSON.stringify(podaci),
+                credentials: "include"
             }); 
             if (!response.ok) {
                 throw new Error('Greška pri slanju podataka');
