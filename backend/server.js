@@ -14,23 +14,18 @@ const natjecanjaRuter = require("./src/routes/natjecanja.routes");
 const app = express();
 
 app.use(express.json()); // da dopustimo JSON body u POST requestu
+app.use(cookieParser());
+
+const FRONTEND_URL = process.env.NODE_ENV === "production"
+  ? "https://dance-arena-devtrak.vercel.app"
+  : "http://localhost:3000";
 
 app.use(
   cors({
-    origin: "https://dance-arena-devtrak.vercel.app", 
+    origin: FRONTEND_URL, 
     credentials: true,
   })
 );
-
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("Povezani ste s MongoDB Atlasom"))
-    .catch(err => console.error("Greška pri povezivanju s MongoDB Atlasom:", err));
-
-const PORT = process.env.PORT || 5001;
-
-
-app.use(express.json());
-app.use(cookieParser());
 
 app.use((req, res, next) => {
   res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private');
@@ -45,6 +40,12 @@ app.use('/', homeRuter)
 app.use("/auth", authRuter);
 app.use("/unospodataka", unosRuter);
 app.use("/natjecanja", natjecanjaRuter);
+
+const PORT = process.env.PORT || 5001;
+
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log("Povezani ste s MongoDB Atlasom"))
+    .catch(err => console.error("Greška pri povezivanju s MongoDB Atlasom:", err));
 
 app.listen(PORT, () => {
   console.log(`Server radi na http://localhost:${PORT}`);

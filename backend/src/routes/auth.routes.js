@@ -19,21 +19,17 @@ router.get("/google/callback",
     try {
       if (!req.user) return res.redirect("https://dance-arena-devtrak.vercel.app");
 
-      const token = jwt.sign(
-        { id: req.user._id },
-        process.env.JWT_SECRET,
-        { expiresIn: "7d" }
-      );
+      const token = jwt.sign({ id: req.user._id }, process.env.JWT_SECRET, { expiresIn: "7d" });
 
       res.cookie("token", token, {
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 1000,
-        sameSite: "None",
-        secure: true,
+        sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+        secure: process.env.NODE_ENV === "production", // HTTPS u produkciji
       });
 
 
-      console.log(res.cookie);
+
       if (req.user.role) {
         return res.redirect("https://dance-arena-devtrak.vercel.app");
       }
@@ -67,8 +63,8 @@ router.get("/provjera-autentifikacije", async (req, res) => {
 router.post("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    sameSite: "None",
-    secure: true,
+    sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
+    secure: process.env.NODE_ENV === "production",
   });
   res.json({ poruka: "Uspješno odjavljen" });
 });
