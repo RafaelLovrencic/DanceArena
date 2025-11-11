@@ -17,7 +17,7 @@ router.get("/google/callback",
   passport.authenticate("google", { session: false }),
   (req, res) => {
     try {
-      if (!req.user) return res.redirect("http://localhost:5173");
+      if (!req.user) return res.redirect("https://dance-arena-devtrak.vercel.app/");
 
       const token = jwt.sign(
         { id: req.user._id },
@@ -33,13 +33,13 @@ router.get("/google/callback",
       });
 
       if (req.user.role) {
-        return res.redirect("http://localhost:5173");
+        return res.redirect("https://dance-arena-devtrak.vercel.app/");
       }
 
-      res.redirect("http://localhost:5173/unospodataka");
+      res.redirect("https://dance-arena-devtrak.vercel.app/unospodataka");
     } catch (err) {
       console.error("Greška u callback-u:", err);
-      res.redirect("http://localhost:5173/");
+      res.redirect("https://dance-arena-devtrak.vercel.app/");
     }
   }
 );
