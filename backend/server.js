@@ -15,24 +15,20 @@ const app = express();
 
 app.use(express.json()); // da dopustimo JSON body u POST requestu
 
-app.get('/', (req, res) => {
-    res.send('Dobrodošli na našu testnu stranicu!!!');
-});
-
-mongoose.connect(process.env.MONGODB_URI)
-    .then(() => console.log("Povezani ste s MongoDB Atlasom"))
-    .catch(err => console.error("Greška pri povezivanju s MongoDB Atlasom:", err));
-
-
-
-const PORT = process.env.PORT || 5001;
-
 app.use(
   cors({
     origin: "https://dance-arena-devtrak.vercel.app", 
     credentials: true,
   })
 );
+
+mongoose.connect(process.env.MONGODB_URI)
+    .then(() => console.log("Povezani ste s MongoDB Atlasom"))
+    .catch(err => console.error("Greška pri povezivanju s MongoDB Atlasom:", err));
+
+const PORT = process.env.PORT || 5001;
+
+
 app.use(express.json());
 app.use(cookieParser());
 
