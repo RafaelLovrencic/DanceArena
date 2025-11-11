@@ -17,7 +17,7 @@ router.get("/google/callback",
   passport.authenticate("google", { session: false }),
   (req, res) => {
     try {
-      if (!req.user) return res.redirect("https://dance-arena-devtrak.vercel.app/");
+      if (!req.user) return res.redirect("https://dance-arena-devtrak.vercel.app");
 
       const token = jwt.sign(
         { id: req.user._id },
@@ -33,7 +33,7 @@ router.get("/google/callback",
       });
 
       if (req.user.role) {
-        return res.redirect("https://dance-arena-devtrak.vercel.app/");
+        return res.redirect("https://dance-arena-devtrak.vercel.app");
       }
 
       res.redirect("https://dance-arena-devtrak.vercel.app/unospodataka");
