@@ -1,7 +1,7 @@
 import '../izgled/unospodataka.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx';
 import { useState, useEffect } from 'react';
-import { PORT } from '../config.js';
+import { IP } from '../config.js';
 import { useAuth } from "../kontekst/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -38,7 +38,7 @@ export default function UnosPodataka() {
     }
 
     try {
-      const response = await fetch(`http://localhost:${PORT}/unospodataka`, {
+      const response = await fetch(`${IP}/unospodataka`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

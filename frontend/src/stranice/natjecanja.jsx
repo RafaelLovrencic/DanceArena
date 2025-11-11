@@ -2,7 +2,7 @@ import '../izgled/natjecanja.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx'
 import DodajNatjecanje from "./suceljeDodajNatjecanje.jsx";
 import {useState, useEffect} from 'react'
-import { PORT } from "../config";
+import { IP } from "../config";
 import { useAuth } from "../kontekst/AuthContext";
 
 export default function Natjecanja() {
@@ -14,7 +14,7 @@ export default function Natjecanja() {
     const [podaciZaUredi, setPodaciZaUredi] = useState(null);
     const dohvatiPodatkeONatjecanju = async () => {
         if (!odabranoNatjecanje) return;
-        const response = await fetch(`http://localhost:${PORT}/natjecanja/${odabranoNatjecanje._id}`);
+        const response = await fetch(`${IP}/natjecanja/${odabranoNatjecanje._id}`);
         const data = await response.json();
         console.log(data);
         setPodaciZaUredi(data);
@@ -23,7 +23,7 @@ export default function Natjecanja() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`http://localhost:${PORT}/natjecanja`);
+                const response = await fetch(`${IP}/natjecanja`);
                 const data = await response.json();
                 setCompetitions(data);
             } catch (err) {
@@ -37,7 +37,7 @@ export default function Natjecanja() {
 
    const obrisiNatjecanje = async () => {
         try {
-            const response = await fetch (`http://localhost:${PORT}/natjecanja/${odabranoNatjecanje._id}`, {
+            const response = await fetch (`${IP}/natjecanja/${odabranoNatjecanje._id}`, {
                 method: "DELETE",
             });
         if (!response.ok) {
@@ -55,7 +55,7 @@ export default function Natjecanja() {
     };
     const osvjeziNatjecanja = async () => {
         try {
-            const response = await fetch(`http://localhost:${PORT}/natjecanja`);
+            const response = await fetch(`${IP}/natjecanja`);
             const data = await response.json();
             setCompetitions(data);
         } catch (err) {

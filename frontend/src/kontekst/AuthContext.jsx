@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { PORT } from "../config";
+import { IP } from "../config";
 
 const AuthContext = createContext();
 
@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const provjeriKorisnika = async () => {
       try {
-        const response = await fetch(`http://localhost:${PORT}/auth/provjera-autentifikacije`, {
+        const response = await fetch(`${IP}/auth/provjera-autentifikacije`, {
           credentials: "include", 
         });
 
@@ -33,7 +33,7 @@ export function AuthProvider({ children }) {
 
   const odjava = async () => {
     try {
-      await fetch(`http://localhost:${PORT}/auth/logout`, {
+      await fetch(`${IP}/auth/logout`, {
         method: "POST",
         credentials: "include",
         cache: "no-store",
