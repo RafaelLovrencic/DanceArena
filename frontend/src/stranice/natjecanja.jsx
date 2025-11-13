@@ -41,7 +41,7 @@ export default function Natjecanja() {
         const data = await response.json();
         console.log(data);
 
-        if (data.organizatorId != korisnik._id) {
+        if (data.organizatorId._id !== korisnik._id) {
             alert('Nemate dopuštenje brisati ovo natjecanje.');
             return;
         }
