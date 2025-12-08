@@ -17,12 +17,6 @@ export default function Natjecanja() {
         const response = await fetch(`${IP}/natjecanja/${odabranoNatjecanje._id}`, {credentials: "include"});
         const data = await response.json();
         console.log(data);
-
-        if (data.organizatorId._id !== korisnik._id) {
-            alert('Nemate dopuštenje uređivati ovo natjecanje.');
-            return;
-        }
-
         setPodaciZaUredi(data);
         setPokaziSucelje(true);
     };
@@ -39,19 +33,9 @@ export default function Natjecanja() {
             }
         };
         fetchData();
-    }, []);
+    }, [competitions]);
 
    const obrisiNatjecanje = async () => {
-        if (!odabranoNatjecanje) return;
-        const response = await fetch(`${IP}/natjecanja/${odabranoNatjecanje._id}`, {credentials: "include"});
-        const data = await response.json();
-        console.log(data);
-
-        if (data.organizatorId._id !== korisnik._id) {
-            alert('Nemate dopuštenje brisati ovo natjecanje.');
-            return;
-        }
-
         try {
             const response = await fetch (`${IP}/natjecanja/${odabranoNatjecanje._id}`, {
                 method: "DELETE",
