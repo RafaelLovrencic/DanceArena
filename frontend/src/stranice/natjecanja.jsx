@@ -39,7 +39,7 @@ export default function Natjecanja() {
             }
         };
         fetchData();
-    }, [competitions]);
+    }, []);
 
    const obrisiNatjecanje = async () => {
         if (!odabranoNatjecanje) return;
