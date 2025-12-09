@@ -2,23 +2,20 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
-const passport = require("passport");
+const passport = require("passport")
 require("dotenv").config();
 
 const homeRuter = require('./src/routes/home.routes')
 const authRuter = require("./src/routes/auth.routes");
 const unosRuter = require("./src/routes/unos.routes");
 const natjecanjaRuter = require("./src/routes/natjecanja.routes");
+const { FRONTEND_URL } = require("./config");
 
 
 const app = express();
 
 app.use(express.json()); // da dopustimo JSON body u POST requestu
 app.use(cookieParser());
-
-const FRONTEND_URL = process.env.NODE_ENV === "production"
-  ? "https://dance-arena-devtrak.vercel.app"
-  : "http://localhost:3000";
 
 app.use(
   cors({
@@ -41,12 +38,12 @@ app.use("/auth", authRuter);
 app.use("/unospodataka", unosRuter);
 app.use("/natjecanja", natjecanjaRuter);
 
-const PORT = process.env.PORT || 5001;
+const SERVER_PORT = process.env.PORT || 5001;
 
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => console.log("Povezani ste s MongoDB Atlasom"))
     .catch(err => console.error("Greška pri povezivanju s MongoDB Atlasom:", err));
 
-app.listen(PORT, () => {
-  console.log(`Server radi na http://localhost:${PORT}`);
+app.listen(SERVER_PORT, () => {
+  console.log(`Server radi na http://localhost:${SERVER_PORT}`);
 });

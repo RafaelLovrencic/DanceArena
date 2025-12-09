@@ -2,7 +2,7 @@ import '../izgled/natjecanja.css'
 import NavigacijskaTraka from './navigacijskatraka.jsx'
 import DodajNatjecanje from "./suceljeDodajNatjecanje.jsx";
 import {useState, useEffect} from 'react'
-import { IP } from "../config";
+import { BACKEND_IP } from "../config";
 import { useAuth } from "../kontekst/AuthContext";
 
 export default function Natjecanja() {
@@ -14,7 +14,7 @@ export default function Natjecanja() {
     const [podaciZaUredi, setPodaciZaUredi] = useState(null);
     const dohvatiPodatkeONatjecanju = async () => {
         if (!odabranoNatjecanje) return;
-        const response = await fetch(`${IP}/natjecanja/${odabranoNatjecanje._id}`, {credentials: "include"});
+        const response = await fetch(`${BACKEND_IP}/natjecanja/${odabranoNatjecanje._id}`, {credentials: "include"});
         const data = await response.json();
         console.log(data);
 
@@ -29,7 +29,7 @@ export default function Natjecanja() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch(`${IP}/natjecanja`, {credentials: "include"});
+                const response = await fetch(`${BACKEND_IP}/natjecanja`, {credentials: "include"});
                 const data = await response.json();
                 setCompetitions(data);
             } catch (err) {
@@ -43,7 +43,7 @@ export default function Natjecanja() {
 
    const obrisiNatjecanje = async () => {
         if (!odabranoNatjecanje) return;
-        const response = await fetch(`${IP}/natjecanja/${odabranoNatjecanje._id}`, {credentials: "include"});
+        const response = await fetch(`${BACKEND_IP}/natjecanja/${odabranoNatjecanje._id}`, {credentials: "include"});
         const data = await response.json();
         console.log(data);
 
@@ -53,7 +53,7 @@ export default function Natjecanja() {
         }
 
         try {
-            const response = await fetch (`${IP}/natjecanja/${odabranoNatjecanje._id}`, {
+            const response = await fetch (`${BACKEND_IP}/natjecanja/${odabranoNatjecanje._id}`, {
                 method: "DELETE",
                 credentials: "include"
             });
@@ -72,7 +72,7 @@ export default function Natjecanja() {
     };
     const osvjeziNatjecanja = async () => {
         try {
-            const response = await fetch(`${IP}/natjecanja`, {credentials: "include"}, {credentials: "include"});
+            const response = await fetch(`${BACKEND_IP}/natjecanja`, {credentials: "include"}, {credentials: "include"});
             const data = await response.json();
             setCompetitions(data);
         } catch (err) {
